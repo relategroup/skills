@@ -32,6 +32,31 @@ These rules matter on every run, so apply them to anything you read or write:
   plus the closing statuses). It must never set a lead to an earlier stage than
   it already holds. See the guardrail in Step 3.
 
+## Safeguards against false positives and negatives
+
+These protect against the two failure modes that bit this pipeline before: a FALSE
+POSITIVE (treating a non-acceptance as an acceptance, or re-queuing a message that
+already went out) and a FALSE NEGATIVE (missing a real acceptance, or losing
+data). Monday's activity log records every status change (who, when, old to new);
+use it as the backup of record.
+
+- CROSS-CHECK THE LOG BEFORE CHANGING A STATUS. Read the item's recent activity
+  log (get_board_activity, or activity_logs for the item) and confirm its current
+  state is real, not the residue of a prior bad change. If a status was recently
+  flipped backward (for example Followed Up to Connected), treat the
+  furthest-along stage as the truth, flag it for Dan, and restore it rather than
+  re-queuing a message that already went out.
+- FALSE-POSITIVE acceptances to reject (also in Step 2 and the Step 3 guardrail):
+  a delivery confirmation ("Message accepted by <Name>"), an inbound invite ("I
+  want to connect"), or any lead already past Connection Sent. Do not advance or
+  surface a message for these.
+- FALSE-NEGATIVE misses: an acceptance buried in Archive or Spam. Always check
+  Inbox, Archive, AND Spam (Step 2) so a real acceptance is not missed.
+- NO SILENT OVERWRITE. When you change a status, write the prior value and the
+  reason into the lead's note (LinkedIn Insights), for example "was Followed Up;
+  first message already sent, do not resend." If you cannot tell whether a message
+  already went out, STOP and flag for Dan rather than risk a double-send.
+
 ## What you need
 
 - Monday board: `18415579805` ("Relate — Nonprofit Signal Leads", Main
