@@ -176,6 +176,36 @@ university foundation or advancement office is fine). Only keep items with a rea
 org name and a working source URL. Never fabricate a lead to hit a number.
 Quality over volume: 3 to 10 solid leads is normal; zero is fine on a slow day.
 
+HARD EXCLUSION (large national orgs, never log, never surface): Do NOT log,
+draft, or surface ANY lead (any title, any source, web search or Sales Navigator)
+whose CURRENT employer is a large national federated health/disease charity or a
+comparable national umbrella nonprofit that runs an in-house development team or
+retains a national fundraising firm. Drop them silently at this step: do not log
+them even as Low or Not a Fit. Seed exclusion list (extend as new ones appear):
+American Heart Association, American Cancer Society, Blood Cancer United (formerly
+Leukemia & Lymphoma Society), St. Jude Children's Research Hospital / ALSAC,
+Alzheimer's Association, American Diabetes Association, American Lung Association,
+Susan G. Komen, Cystic Fibrosis Foundation, Muscular Dystrophy Association, March
+of Dimes, National Kidney Foundation, National Multiple Sclerosis Society, ALS
+Association, JDRF / Breakthrough T1D, Crohn's and Colitis Foundation, Arthritis
+Foundation, Epilepsy Foundation, American Red Cross, United Way Worldwide, Feeding
+America (national office), Make-A-Wish America, plus similar national
+disease/health charities and national umbrella nonprofits. The exclusion covers
+the national org AND its regional divisions, chapters, and affiliates (for
+example "Blood Cancer United Georgia-South Carolina").
+NUANCE 1 (independent locals stay in scope): an independent local organization is
+NOT excluded just because it belongs to a national network. A local food bank
+that is a Feeding America member, an independent community health clinic, or a
+local YMCA / United Way chapter that operates independently is still a valid
+target. Exclude only the national org's own headquarters, divisions, and chapters,
+not independent member organizations.
+NUANCE 2 (target vs. warm angle): this excludes the org as a TARGET, meaning the
+lead's CURRENT employer. It does NOT change the warm-intro rule. A contact at a
+different, in-scope nonprofit whose PAST history includes American Heart
+Association, American Cancer Society, or University of Miami is still a valued
+rapport hook for Dan. Exclude on current employer; keep past employer as a warm
+angle.
+
 DEADLINE CHECK (required, before logging): verify the date of the underlying
 signal and any stated deadline. For RFPs and job/contract postings, find the
 proposal due date, application close date, or posting date, and confirm the YEAR.
