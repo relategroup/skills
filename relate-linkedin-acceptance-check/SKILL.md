@@ -31,6 +31,10 @@ These rules matter on every run, so apply them to anything you read or write:
   the status ladder (New, Ready to Send, Connection Sent, Connected, Followed Up,
   plus the closing statuses). It must never set a lead to an earlier stage than
   it already holds. See the guardrail in Step 3.
+- NEVER reply to, or queue or surface a templated message for, a contact who has
+  already sent a real message. A canned first message on top of their personal
+  reply reads as completely disjointed. Real replies are routed to Dan to answer
+  himself (see Step 3, "MESSAGED").
 
 ## Safeguards against false positives and negatives
 
@@ -147,8 +151,15 @@ For leads correctly at "Connection Sent," update Status (`color_mm3vgcvp`) with
 - ACCEPTED (no negative message): set Status "Connected". Open the lead's
   LinkedIn Draft Doc (`link_mm3vnpss`) and extract the "FIRST MESSAGE" block to
   have ready for Dan. Do NOT send it.
-- MESSAGED with a positive or neutral reply: set Status "Connected", capture the
-  gist, and have the FIRST MESSAGE (or a lightly tailored reply) ready.
+- MESSAGED (a real inbound reply from the lead, positive or neutral): DO NOT queue
+  or surface the templated first message; sending canned copy on top of their
+  personal reply reads as completely disjointed. Instead ELEVATE it to Dan: set
+  Status "Replied", move the item to the "Replied (Dan to Respond Personally)"
+  group (group_mm3w6sdc) with move_item_to_group, capture the gist of what they
+  said in LinkedIn Insights (long_text_mm3wmhcw), and send Dan a notification
+  (create_notification: user_id "66543582", target_type "Project", target_id =
+  the item id, text = a one-line "<Name> at <Org> replied on LinkedIn, respond
+  personally"). Dan writes the reply himself. Never auto-send anything here.
 - Clearly NEGATIVE reply (polite no, "not interested", "remove me", "wrong
   person"): set Status "Not Interested" and note what they said in LinkedIn
   Insights (`long_text_mm3wmhcw`). Queue no message.
@@ -171,6 +182,9 @@ Write a concise summary (no em-dashes):
 - Who accepted or replied since the last check (name and org), the status you
   set, and for each now Connected, the ready-to-send FIRST MESSAGE text (plus the
   Doc link) for Dan to review, with the firm named "Relate Group."
+- Any leads who REPLIED and were elevated to the "Replied (Dan to Respond
+  Personally)" group, with the gist of what they said. Call these out FIRST: they
+  are the warmest and most time-sensitive, and Dan answers them himself.
 - Any leads marked Not Interested or Not a Fit, with a one-line reason.
 - Which leads are still pending (no email yet).
 - Any lead you skipped or restored under the no-regression guardrail (for
