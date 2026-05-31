@@ -134,6 +134,40 @@ Do NOT treat a generic new board chair as a primary signal unless the new chair
 arrives with a stated turnaround or fundraising mandate. Skip 990 revenue analysis
 (it lags one to two years).
 
+### Step 1B: LinkedIn / Sales Navigator job-change pass (run alongside web search)
+
+A nonprofit leader's own LinkedIn job-change is the earliest, warmest version of
+the New CEO/ED and New CDO/Dev Lead signals: they announce it themselves, before
+press, in a celebratory moment ideal for a congratulations-led connect. Run this
+in Dan's logged-in Sales Navigator (Chrome) every sweep, as a complement to web
+search (web search casts the wider net across all US nonprofits; this is timelier
+and warmer but skews to Dan's network).
+
+- Saved search: Dan has a saved Sales Nav lead search (id 1995767946) with email
+  alerts ON (weekly). It combines: the "Changed jobs" spotlight (Recent updates
+  section), Current title = Chief Development Officer OR Chief Executive Officer
+  OR Executive Director (add Chief Advancement Officer / VP of Development when the
+  taxonomy allows), and Industry = "Non-profit Organizations". Open it from Saved
+  searches, or rebuild those filters.
+- 90-DAY vs 30-DAY: the "Changed jobs" spotlight is hardwired to the past 90 days
+  (no 30-day toggle; the "years in role" filter only goes as granular as "less
+  than 1 year"). To get a true ~30-day window, READ each result card's tenure
+  ("X months in role | X months in company") and KEEP ONLY leads showing about 1
+  month or less in BOTH role and company. This also strips noise: it drops
+  internal promotions (low "in role" but high "in company") and the occasional
+  stale "Recently hired" tag on someone who has actually been in the seat for
+  years.
+- Scale note: across all leadership titles this spotlight returns thousands over
+  90 days, so it is NOT a log-everything list. Lean on the weekly alert email (it
+  surfaces only NEW changes since last check, a small delta) and the ~1-month
+  tenure filter, then prioritize by Relate Group fit (sector bench, Florida /
+  Southeast, stacked signals).
+- For each kept lead: a new chief executive or executive director is a "New
+  CEO/ED" signal; a new CDO / VP / Director of Development is a "New CDO/Dev Lead"
+  signal (project and advisory framing, not fractional). Then run the normal
+  pipeline from Step 3 (dedupe) onward: log, auto-verify the profile, Michelle
+  check, draft, and advance to Ready to Send.
+
 ### Step 2: Filter, with a required DEADLINE CHECK
 
 U.S.-based nonprofits only. Skip for-profits, the grant-making foundation itself
