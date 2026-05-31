@@ -38,6 +38,39 @@ Google Docs, or summaries. Use periods, commas, colons, parentheses, or "and" /
 "but" instead. Always call the firm "Relate Group," never just "Relate." Re-read
 every draft before saving to confirm both.
 
+## Safeguards against false positives and negatives (every run)
+
+Leads can go wrong two ways: a FALSE POSITIVE (acting on a wrong-person match or a
+bad status, for example sending to the wrong contact, or re-sending because a
+status was flipped) or a FALSE NEGATIVE (dropping a real lead, or losing good
+data). Monday keeps a full activity log of every column change (who, when, old
+value to new value); treat it as the backup of record. Apply all three rules:
+
+1. CROSS-CHECK BEFORE CONSEQUENTIAL ACTIONS. Before advancing or regressing a
+   Status, retiring a lead, changing a verified contact (link_mm3w4dpm), or
+   anything a downstream send depends on, read that item's recent activity log
+   (get_board_activity, or activity_logs via the API, filtered to the item). If
+   the log shows a backward status move (for example Followed Up to Connected), a
+   contact or field that changed unexpectedly, or a conflict with what you are
+   about to do, STOP. Do not act on the suspect state: flag it to Dan, restore the
+   furthest-along true value, and note what you found. Never move a lead backward.
+
+2. VERIFICATION CONFIDENCE, AND FLAG-DO-NOT-DROP. Only advance a lead to Ready to
+   Send on a CONFIDENT contact match (verified person plus org and title,
+   corroborated by the source AND the LinkedIn profile). A shaky match (common
+   name, org not yet on the profile, a single weak source) does NOT auto-advance:
+   leave it New and flag what is unconfirmed in Action for Dan. If a real
+   decision-maker exists but cannot be confirmed, flag it "needs confirmation" and
+   KEEP it; do not silently drop it or mark Not Enough Info unless no one can be
+   identified at all.
+
+3. NO SILENT OVERWRITE. Whenever you change a Status or a verified contact, write
+   the PRIOR value and the reason into the lead's note (Action for Dan or LinkedIn
+   Insights), for example "was Connected; set to Followed Up on <date> because
+   <reason>". That puts a one-glance backup on the card on top of Monday's log.
+   This applies to manual corrections too: if you are fixing a value, record what
+   it was.
+
 ## Configuration (current Relate Group setup)
 
 If the board is rebuilt or columns change, update these IDs (call get_board_info
