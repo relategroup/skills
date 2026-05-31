@@ -61,6 +61,7 @@ to re-map).
   - LinkedIn Draft (link): `link_mm3vnpss`
   - MB 1st-Degree? (status: Yes / No / Unknown): `color_mm3w8mpp`
   - Action for Dan (long_text): `long_text_mm3wbvg2`
+  - Msg Variant (status: "A (Current)" / "B (Alongside)"): `color_mm3whszp`
 
 ## Relate Group positioning (for the outreach voice)
 
@@ -377,21 +378,67 @@ Medium lead, write as Dan, like a sharp marketing pro:
 - If the profile shows a shared employer (AHA, ACS, University of Miami), you may
   warmly reference it ("fellow AHA alum"), only when clearly visible, kept natural.
 
-Two parts, both em-dash free:
+A/B TEST (alternate two message variants, 50/50): every draft is one of two
+variants so Relate Group can test which performs better. ASSIGNMENT: before
+drafting, read the board's "Msg Variant" column (`color_mm3whszp`) across leads
+that already have a variant, and assign whichever variant has FEWER so far (tie
+goes to A); keep alternating within the run. Then TAG the lead: set
+`color_mm3whszp` to "A (Current)" or "B (Alongside)" (createLabelsIfMissing:true),
+and add a "Variant: A (Current)" or "Variant: B (Alongside)" line in the draft Doc
+header. BOTH variants must be fully personalized: insert the verified First Name,
+exact title, and org. Never leave a [bracket] in a Ready-to-Send draft. Both are
+em-dash free and say "Relate Group".
+
+VARIANT A (current, matched to the signal):
 A) CONNECTION REQUEST: about 300 characters max. Reference the trigger, establish
    Dan as a senior operator who has been in their seat, soft connect ask.
 B) FIRST MESSAGE (after they accept): 3 to 5 sentences. Name the moment they are
-   in, offer the matched Relate Group help, soft CTA.
+   in, offer the matched Relate Group help (per the offer-to-signal mapping
+   above), soft CTA.
 For new-hire signals, address the named person. For job-posting / RFP / org-level
-signals, address the verified ED / CEO. Only if you truly cannot identify the
-person, use "[Name]" with a top line "Contact: confirm the ED/CEO name before
-sending" (and the lead stays New, not Ready to Send).
+signals, address the verified ED / CEO. If you truly cannot identify the person,
+use "[Name]" with a top line "Contact: confirm the ED/CEO name before sending"
+(and the lead stays New, not Ready to Send).
+
+VARIANT B (Alongside peer-group offering): What Alongside is, a free monthly peer
+group Relate Group hosts on Zoom for nonprofit leaders (45 minutes once a month,
+facilitated with the Gestalt method, fully confidential, cohorts for CEOs/EDs,
+CDOs, and Peer-to-Peer National Leaders). Fill [First Name] and [title] from the
+verified data; keep the connection note under 300 characters (trim the role line
+if a long title pushes it over). Use these templates close to verbatim, changing
+only the personalization:
+A) CONNECTION REQUEST (about 300 characters max):
+Hi [First Name], congratulations on your new role as [title]! I'm Dan, co-founder
+of Relate Group. We host free monthly "Alongside" peer groups on Zoom for leaders
+in your seat, to think through what's on your mind alongside people who've walked
+it. Would love to connect.
+B) FIRST MESSAGE (after they accept):
+Thanks for connecting, [First Name], and again, congratulations on the new role.
+I wanted to share a bit more about Alongside, a peer group Relate Group hosts for
+leaders like you. We run cohorts specifically for CEOs/Executive Directors, Chief
+Development Officers, and Peer-to-Peer National Leaders, so you're always sitting
+with people facing the same realities you are.
+Here's how it works:
+- 45 minutes, once a month, on Zoom. That's the entire commitment.
+- Facilitated by our team using the Gestalt method. Each meeting, a member shares
+  what's keeping them up at night, the group asks clarifying questions, and then
+  peers reflect on similar experiences they've navigated. You leave with
+  perspective from people who actually get it.
+- Fully confidential. What's said in the group stays in the group.
+If you'd like to join the next session, just reply here or email me your preferred
+email address at dan@relate.group and I'll send the calendar invite.
+I'd genuinely enjoy having you in the room.
+Warmly,
+Dan Thorpe
+Co-Founder, Relate Group
+(Email note: dan@relate.group is per Dan's finalized copy; confirm vs.
+dan@relate.consulting and use whichever Dan confirms.)
 
 Save the draft as a Google Doc: create_file, contentMimeType "text/plain",
 parentId `1mhNV8Zt3V__y4sF_yoI7RXDr6wShtbaI`, title
 "LinkedIn Draft - <Org> (<contact or signal>)", textContent = the formatted draft
-(header with Org, Contact, Signal, any warm-intro note, then CONNECTION REQUEST
-and FIRST MESSAGE). The returned id makes the link
+(header with Org, Contact, Signal, the assigned Variant (A or B), any warm-intro
+note, then CONNECTION REQUEST and FIRST MESSAGE). The returned id makes the link
 `https://docs.google.com/document/d/<id>/edit`. Set LinkedIn Draft
 (`link_mm3vnpss`): `{"url":"<that url>","text":"Open draft"}`.
 
@@ -424,8 +471,9 @@ High-priority and stacked-signal leads by name, drafts created, profiles verifie
 any shared-employer (AHA / ACS / University of Miami) angles, every MB 1st-Degree
 "Yes" so Michelle can be looped in, leads sifted out for passed deadlines, and any
 set to Not a Fit or Not Enough Info. State which leads advanced to "Ready to Send"
-and which are still "New" and why. Remind Dan nothing was sent: Ready to Send leads
-are queued and awaiting his final word.
+and which are still "New" and why. Report the A/B split this run (how many got
+Variant A vs Variant B) and the running board-wide A/B totals. Remind Dan nothing
+was sent: Ready to Send leads are queued and awaiting his final word.
 
 ## Add-on sweep: Active Asks (public LinkedIn posts and demand signals)
 
