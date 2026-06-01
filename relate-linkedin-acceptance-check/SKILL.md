@@ -143,7 +143,7 @@ Dan's outreach:
 
 Email notifications miss real replies (LinkedIn does not always email a message
 reply, and digests get archived). So ALSO read Dan's actual LinkedIn inbox with
-Chrome every run. This is the most reliable source for replies.
+Chrome every run. This is the most reliable source for replies. CRITICAL: do NOT trust the "Unread" filter or unread badges. Dan reads messages on his phone, so genuine replies are very often already marked read by the time this check runs and will not show under Unread (this is exactly how real replies from Dan Leal and Marc Hurlbert were missed on a prior run). Always work from the FULL conversation list and judge each thread by the sender of its LAST message, regardless of read/unread state, scrolling back far enough to cover the whole outreach window (at least the last ~7 days, further after a big send).
 
 1. With the Claude in Chrome tools, navigate to `https://www.linkedin.com/messaging/`
    and screenshot the conversation list. (Use an existing logged-in tab; the
@@ -160,7 +160,7 @@ Chrome every run. This is the most reliable source for replies.
 4. Match each replying person to a board lead by name and org. A reply can come
    from a lead at ANY active stage (Connection Sent, Connected, or Followed Up):
    all of them are valid to elevate to Replied, because elevating to the Replied
-   lane is a forward move, not a regression.
+   lane is a forward move, not a regression. Also DETECT ACCEPTANCES IN CHROME, not only from email: open My Network > Connections (https://www.linkedin.com/mynetwork/invite-connect/connections/) sorted by "Recently added" and read the most recent connections, and glance at the Notifications page for "accepted your invitation" items. Any "Connection Sent" lead who now appears in recently-added Connections has ACCEPTED even if no acceptance email arrived; the recently-added Connections list is the most reliable acceptance signal. Match by name and org and treat as ACCEPTED in Step 3.
 
 Treat a LinkedIn-inbox reply exactly like a "MESSAGED" reply in Step 3: never queue
 or surface a templated message on top of it, elevate it to Dan.
@@ -187,8 +187,8 @@ the truth, flag it for Dan, and restore it rather than re-queuing the message.
 For leads correctly at "Connection Sent," update Status (`color_mm3vgcvp`) with
 `change_item_column_values`, passing `createLabelsIfMissing: true`. In EVERY case
 below, you must already have a specific backing email located in the
-danjthorpe@gmail.com mailbox (sender, subject, date, folder). Record that pointer
-in LinkedIn Insights with the status change. If there is no such email for a lead,
+danjthorpe@gmail.com mailbox (sender, subject, date, folder), OR an equivalent Chrome-observed signal (a specific LinkedIn message, or a recently-added Connections-list entry or "accepted your invitation" notification viewed live). Record that pointer
+in LinkedIn Insights with the status change. If there is no such backing evidence (email or Chrome signal) for a lead,
 make NO change and surface nothing for it:
 
 - ACCEPTED (no negative message): set Status "Connected". Read the lead's Outreach
