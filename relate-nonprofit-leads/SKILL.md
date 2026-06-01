@@ -84,7 +84,7 @@ to re-map).
 
 - Monday board: `18415579805` ("Relate — Nonprofit Signal Leads", Main workspace)
 - Groups: main "Leads" (`topics`); "Active Asks (Fractional / Interim / Contract)"
-  (`group_mm3wstq7`); "Not Pursuing (Declined / Not a Fit / No Info)" (`group_mm3w5j3z`)
+  (`group_mm3wstq7`); "Connection Sent / Followed Up" (`group_mm3w1p1z`); "Replied (Dan to Respond Personally)" (`group_mm3w6sdc`); "Not Pursuing (Declined / Not a Fit / No Info)" (`group_mm3w5j3z`)
 - Column IDs:
   - Trigger Detail (long_text): `long_text_mm3v43dc`
   - Source (link): `link_mm3vj8yb`
@@ -350,9 +350,9 @@ in Trigger Detail, score it High.
 
 - New: freshly logged, prep not yet complete.
 - Ready to Send: fully prepped and queued, awaiting Dan's go (see Step 7).
-- Connection Sent: connection request sent, awaiting acceptance.
+- Connection Sent: connection request sent, awaiting acceptance. On setting this status (the request has gone out), move the item into the "Connection Sent / Followed Up" group (`group_mm3w1p1z`) with move_object.
 - Connected: invitation accepted, ready for the first message.
-- Followed Up: first message sent.
+- Followed Up: first message sent. On setting this status, move the item into the "Connection Sent / Followed Up" group (`group_mm3w1p1z`) with move_object.
 - Not Interested: person replied negatively or asked to stop.
 - Not a Fit: Claude or Dan judges the prospect not a match (poor sector, very
   large institution, interim, expired/stale lead).
@@ -643,7 +643,7 @@ Source = the NFP CEOs list URL, Date Detected = today, Location, Sector, Fit
 Priority (Medium default, High for Florida or strong-fit), Status per the method
 above, MB "Unknown", LinkedIn Profile, a short Insights line, an Action for Dan,
 and the Outreach Drafts column holding the exact message(s) sent. Only log leads
-that actually sent; excluded/unreachable leads are not logged.
+that actually sent; excluded/unreachable leads are not logged. After the item is created and its Status set (Connection Sent for 2nd/3rd degree, Followed Up for 1st degree), MOVE it into the "Connection Sent / Followed Up" group (`group_mm3w1p1z`) with move_object so every sent Alongside lead lands there instead of New Leads.
 
 VARIANT B TEMPLATES (personalize [First], keep "Alongside" quoted, no em-dash):
 
