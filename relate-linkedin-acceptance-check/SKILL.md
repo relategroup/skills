@@ -2,9 +2,10 @@
 name: relate-linkedin-acceptance-check
 description: >-
   Run Dan Thorpe's LinkedIn acceptance check for the Relate Group prospecting
-  pipeline. Detect, FROM EMAIL, which pending LinkedIn connection requests have
-  been accepted or have replied, update the Relate Group Monday board, and queue
-  the next message for Dan to approve. Use whenever Dan says "run the acceptance
+  pipeline. Detect, from Dan's Spark email AND from his LinkedIn inbox (read live
+  via Chrome), which pending LinkedIn connection requests have been accepted or
+  have replied, update the Relate Group Monday board, and queue the next message
+  for Dan to approve. Use whenever Dan says "run the acceptance
   check," "did anyone accept," "check LinkedIn accepts," "any connection
   accepts," "who connected back," "check for replies on my LinkedIn outreach,"
   or when reconciling the "Connection Sent" leads on the signal board against new
@@ -35,16 +36,18 @@ These rules matter on every run, so apply them to anything you read or write:
   already sent a real message. A canned first message on top of their personal
   reply reads as completely disjointed. Real replies are routed to Dan to answer
   himself (see Step 3, "MESSAGED").
-- EVIDENCE-BOUND ONLY. Spark email on the danjthorpe@gmail.com mailbox is the ONLY
-  source of truth for this skill. Every acceptance or reply you log, and every
-  status change you make, MUST map to a specific, real email you actually located
-  in that mailbox. Before acting on a lead, identify the backing email by sender,
-  subject, date, and folder (Inbox / Archive / Spam), and record that pointer in
-  LinkedIn Insights. If you cannot point to a specific email, you may NOT change
-  the lead's status and you may NOT surface a reply for it: leave it pending and
-  move on. Never infer, assume, guess, or fabricate an acceptance or a reply, and
-  never write or quote reply text that is not taken from a specific located email.
-  No email, no write.
+- EVIDENCE-BOUND ONLY. Every acceptance or reply you log, and every status change
+  you make, MUST map to a specific, real piece of evidence you actually located in
+  one of the two sources of truth: (1) a Spark email in the danjthorpe@gmail.com
+  mailbox, identified by sender, subject, date, and folder (Inbox / Archive /
+  Spam); or (2) a specific message in Dan's LinkedIn inbox, viewed live via Chrome
+  (Step 2B), identified by the sender's name and the message text and time.
+  Record that pointer with the change (in the item update / LinkedIn Insights). If
+  you cannot point to a specific email or a specific LinkedIn message, you may NOT
+  change the lead's status and you may NOT surface a reply for it: leave it pending
+  and move on. Never infer, assume, guess, or fabricate an acceptance or a reply,
+  and never write or quote reply text that is not taken verbatim from a specific
+  located email or LinkedIn message. No evidence, no write.
 
 ## Safeguards against false positives and negatives
 
@@ -135,6 +138,32 @@ Dan's outreach:
   acceptance of his.
 - "Message accepted by <Name>": that is a delivery confirmation, not a reply.
 - Job alerts, device-verification, and digest emails: ignore.
+
+## Step 2B: Check Dan's LinkedIn inbox via Chrome (required)
+
+Email notifications miss real replies (LinkedIn does not always email a message
+reply, and digests get archived). So ALSO read Dan's actual LinkedIn inbox with
+Chrome every run. This is the most reliable source for replies.
+
+1. With the Claude in Chrome tools, navigate to `https://www.linkedin.com/messaging/`
+   and screenshot the conversation list. (Use an existing logged-in tab; the
+   browser is read-tier for computer-use, so use the Chrome MCP, not pixel clicks
+   on the browser chrome.)
+2. Scan conversations updated in the last ~5 days. In the list preview, a thread
+   whose last line starts with the OTHER person's name (for example
+   "Kris: Thanks, Dan...") means THEY replied last. A thread whose last line starts
+   with "You:" means Dan sent last and there is no new reply: skip it.
+3. For each thread where the lead replied last, open it and read the full latest
+   message so you have the exact wording. Capture a short VERBATIM quote and the
+   approximate time. This is the evidence pointer for that lead (per the
+   evidence-bound rule).
+4. Match each replying person to a board lead by name and org. A reply can come
+   from a lead at ANY active stage (Connection Sent, Connected, or Followed Up):
+   all of them are valid to elevate to Replied, because elevating to the Replied
+   lane is a forward move, not a regression.
+
+Treat a LinkedIn-inbox reply exactly like a "MESSAGED" reply in Step 3: never queue
+or surface a templated message on top of it, elevate it to Dan.
 
 ## Step 3: Match and update the board
 
