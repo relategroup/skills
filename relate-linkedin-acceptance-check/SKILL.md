@@ -80,14 +80,14 @@ use it as the backup of record.
   workspace). Key columns:
   - Status: `color_mm3vgcvp` (labels include "Connection Sent", "Connected",
     "Followed Up", "Not Interested", "Not a Fit", "Not Enough Info")
-  - LinkedIn Draft Doc (Google Doc URL): `link_mm3vnpss`
+  - Outreach Drafts (long_text): `long_text_mm3xb1qd` — holds the CONNECTION REQUEST
+    and FIRST MESSAGE for the lead (replaces the old Google Doc)
   - LinkedIn Profile: `link_mm3w4dpm`
   - Trigger Detail: `long_text_mm3v43dc`
   - LinkedIn Insights: `long_text_mm3wmhcw`
   - Action for Dan: `long_text_mm3wbvg2`
 - Spark Desktop running with agent access enabled. LinkedIn notification email
   lands in the **danjthorpe@gmail.com** mailbox (not dan@relate.consulting).
-- Google Drive read access, to open each lead's draft Doc.
 
 If Spark is not reachable, note that and stop. Do not error out.
 
@@ -98,8 +98,8 @@ On board `18415579805`, read the items whose Status (`color_mm3vgcvp`) is
 (call `get_board_info` first if you are unfamiliar with the board structure).
 
 For each lead, note: item id, organization name (item name), the person's name
-(from LinkedIn Profile `link_mm3w4dpm` or Trigger Detail), and the LinkedIn
-Draft Doc URL (`link_mm3vnpss`).
+(from LinkedIn Profile `link_mm3w4dpm` or Trigger Detail), and the lead's Outreach
+Drafts text (`long_text_mm3xb1qd`).
 
 ONLY "Connection Sent" leads are in scope. Leads already at "Connected,"
 "Followed Up," or any closing status ("Not Interested," "Not a Fit," "Not Enough
@@ -191,9 +191,9 @@ danjthorpe@gmail.com mailbox (sender, subject, date, folder). Record that pointe
 in LinkedIn Insights with the status change. If there is no such email for a lead,
 make NO change and surface nothing for it:
 
-- ACCEPTED (no negative message): set Status "Connected". Open the lead's
-  LinkedIn Draft Doc (`link_mm3vnpss`) and extract the "FIRST MESSAGE" block to
-  have ready for Dan. Do NOT send it.
+- ACCEPTED (no negative message): set Status "Connected". Read the lead's Outreach
+  Drafts column (`long_text_mm3xb1qd`) and take the "FIRST MESSAGE" block to have
+  ready for Dan. Do NOT send it.
 - MESSAGED (a real inbound reply from the lead, positive or neutral): DO NOT queue
   or surface the templated first message; sending canned copy on top of their
   personal reply reads as completely disjointed. Instead ELEVATE it to Dan: set
@@ -228,8 +228,8 @@ belong in the report as an acceptance or reply:
 
 - Who accepted or replied since the last check (name and org), the backing email
   it maps to, the status you set, and for each now Connected, the ready-to-send
-  FIRST MESSAGE text (plus the Doc link) for Dan to review, with the firm named
-  "Relate Group."
+  FIRST MESSAGE text (from the Outreach Drafts column) for Dan to review, with the
+  firm named "Relate Group."
 - Any leads who REPLIED and were elevated to the "Replied (Dan to Respond
   Personally)" group, with a short verbatim quote from their reply email (not a
   paraphrase). Call these out FIRST: they are the warmest and most time-sensitive,
