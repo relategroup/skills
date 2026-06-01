@@ -8,7 +8,11 @@ description: >-
   fully prepped leads to "Ready to Send" for Dan's approval. Use whenever Dan
   wants to run the lead sweep, find new nonprofit prospects, add leads to the
   signal board, or generate outreach drafts ("run the sweep," "find leads," "add
-  more leads," "any new prospects"), or as the scheduled daily run. Covers
+  more leads," "any new prospects"), or as the scheduled daily run. ALSO covers the
+  standing NFP CEOs List "Alongside" re-engagement campaign ("work the NFP CEOs
+  list," "send the Alongside invites," "resume the NFP CEOs sends from #N"): cold
+  Variant B peer-group invites to Dan's curated Sales Navigator list (see the
+  "Add-on campaign" section). Covers
   development or campaign RFPs, open or vacated development leadership roles,
   departures, financial distress, capital campaigns, CRM migrations, strategic
   plans or mergers, newly hired CDOs / CEOs / EDs, and capacity grants. Research,
@@ -590,6 +594,99 @@ LinkedIn Profile; Insights (role, org, why it is warm, plus the MB 1st-degree
 check); Action for Dan; then write a warm reply referencing their exact ask
 (not a generic pitch) into the Outreach Drafts column. Never comment or message automatically; draft
 only, then advance to Ready to Send per Step 7.
+
+## Add-on campaign: NFP CEOs List "Alongside" outreach (Variant B only)
+
+A standing re-engagement campaign that is DIFFERENT from the normal signal sweep.
+Run it when Dan says things like "work the NFP CEOs list," "send the Alongside
+invites," or "resume the NFP CEOs sends from #N."
+
+WHAT IT IS: Dan curated a Sales Navigator lead list of nonprofit CEOs and Executive
+Directors he interacted with about a year ago (he was pitching Google Ad Grant
+management then). The goal now is to invite each of them to Relate Group's free
+monthly "Alongside" peer group. These people are NOT new to their roles, so there
+is no "congrats on the new role" angle, and we send ONLY Variant B (the Alongside
+offering), never Variant A.
+
+THE LIST: Sales Navigator lead list "NFP CEOs List",
+`https://www.linkedin.com/sales/lists/people/7302789970879041537` (~110 leads).
+Work it in the list's default order (Date added, descending) so "first 25", "next
+25", or "from #N" are unambiguous. Track progress on the Monday board (each sent
+lead is logged), so to resume you read the board for who is already done and
+continue from the next un-logged name.
+
+MESSAGING RULES (locked):
+- Cold, first-time framing. Do NOT mention a prior connection, the past Google Ad
+  Grant outreach, or "we connected before". Treat every one as a fresh introduction.
+- Always put "Alongside" in double quotation marks.
+- No em-dash anywhere (hard rule above).
+- Personalize the first name. Keep the connection-request note under 300 characters.
+
+SEND METHOD BY DEGREE (try everyone, do not assume):
+- ALREADY CONNECTED (1st degree): you cannot send a connection request, so send the
+  invite as a DIRECT MESSAGE (the "first message" copy below). Log Status
+  "Followed Up".
+- NOT CONNECTED (2nd / 3rd degree): send a CONNECTION REQUEST with the note below.
+  Log Status "Connection Sent". The first message is held in Outreach Drafts for
+  when they accept.
+- EMAIL-GATED (LinkedIn demands the person's email to connect): do not enter an
+  email you do not have. Try a Sales Navigator InMail instead (Message on the
+  Sales Nav lead opens an InMail; uses 1 credit; needs a subject). If InMail is not
+  available either, EXCLUDE the lead (do not log it) and move on.
+- Verify each person on LinkedIn (right name, org, current CEO/ED role) before
+  sending. SKIP the Michelle Boggs check on this rapid campaign (set MB 1st-Degree
+  "Unknown" with a note "not run during rapid send push") to keep volume up.
+
+BOARD LOGGING for each SENT lead: create_item named after the ORG, with Signal Type
+"Alongside Invite" (create the label if missing), Msg Variant "B (Alongside)",
+Source = the NFP CEOs list URL, Date Detected = today, Location, Sector, Fit
+Priority (Medium default, High for Florida or strong-fit), Status per the method
+above, MB "Unknown", LinkedIn Profile, a short Insights line, an Action for Dan,
+and the Outreach Drafts column holding the exact message(s) sent. Only log leads
+that actually sent; excluded/unreachable leads are not logged.
+
+VARIANT B TEMPLATES (personalize [First], keep "Alongside" quoted, no em-dash):
+
+Connection request (2nd / 3rd degree, max ~300 chars):
+> Hi [First], I'm Dan, co-founder of Relate Group. We host a free monthly peer
+> group called "Alongside" for nonprofit CEOs and Executive Directors, a small room
+> of leaders in your seat thinking through what's on their plate together. No cost,
+> no pitch, and I'd love to save you a seat.
+
+First message (sent after they accept; also stored in Outreach Drafts):
+> Thanks for connecting, [First]. The quick version of why I reached out: Relate
+> Group runs a free monthly peer group called "Alongside", built specifically for
+> nonprofit CEOs and Executive Directors.
+>
+> How it works:
+> * 45 minutes, once a month, on Zoom. That's the whole commitment.
+> * A small cohort in the same seat as you. Each session one member puts a real
+>   challenge on the table, the group asks questions and shares how they've handled
+>   similar things, and you leave with perspective from people who genuinely get it.
+> * Facilitated by our team, and fully confidential.
+>
+> No cost and no pitch, just a room of peers thinking alongside each other. We have
+> a cohort forming now and I'd love to hold a seat for you. If you're open to it,
+> reply here or send your preferred email to dan@relate.group and I'll share the
+> next date.
+
+Direct message (1st degree, one combined message; no "thanks for connecting"):
+> Hi [First], hope you're doing well. Reaching out because Relate Group runs a free
+> monthly peer group called "Alongside", built specifically for nonprofit CEOs and
+> Executive Directors. Here's the gist: 45 minutes once a month on Zoom, a small
+> cohort in the same seat as you, where each session one member puts a real
+> challenge on the table and the group reflects from their own experience.
+> Facilitated by our team and fully confidential. No cost and no pitch, just a room
+> of peers thinking alongside each other. We have a cohort forming now and I'd love
+> to hold a seat for you. If you're open to it, just reply here and I'll share the
+> next date.
+
+InMail (email-gated fallback). Subject: "A free peer room for nonprofit CEOs".
+Body: same as the 1st-degree direct message above, ending "...just reply and I'll
+share the next date." (InMail has no "reply here" thread, so drop "here").
+
+NOTHING auto-replies: if any of these people write back, route them to the Replied
+lane for Dan to answer personally (same rule as the acceptance-check skill).
 
 ## Consolidation note
 
