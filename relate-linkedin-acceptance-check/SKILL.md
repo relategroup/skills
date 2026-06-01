@@ -35,6 +35,16 @@ These rules matter on every run, so apply them to anything you read or write:
   already sent a real message. A canned first message on top of their personal
   reply reads as completely disjointed. Real replies are routed to Dan to answer
   himself (see Step 3, "MESSAGED").
+- EVIDENCE-BOUND ONLY. Spark email on the danjthorpe@gmail.com mailbox is the ONLY
+  source of truth for this skill. Every acceptance or reply you log, and every
+  status change you make, MUST map to a specific, real email you actually located
+  in that mailbox. Before acting on a lead, identify the backing email by sender,
+  subject, date, and folder (Inbox / Archive / Spam), and record that pointer in
+  LinkedIn Insights. If you cannot point to a specific email, you may NOT change
+  the lead's status and you may NOT surface a reply for it: leave it pending and
+  move on. Never infer, assume, guess, or fabricate an acceptance or a reply, and
+  never write or quote reply text that is not taken from a specific located email.
+  No email, no write.
 
 ## Safeguards against false positives and negatives
 
@@ -146,7 +156,11 @@ example "Followed Up" changed to "Connected"), treat the furthest-along stage as
 the truth, flag it for Dan, and restore it rather than re-queuing the message.
 
 For leads correctly at "Connection Sent," update Status (`color_mm3vgcvp`) with
-`change_item_column_values`, passing `createLabelsIfMissing: true`:
+`change_item_column_values`, passing `createLabelsIfMissing: true`. In EVERY case
+below, you must already have a specific backing email located in the
+danjthorpe@gmail.com mailbox (sender, subject, date, folder). Record that pointer
+in LinkedIn Insights with the status change. If there is no such email for a lead,
+make NO change and surface nothing for it:
 
 - ACCEPTED (no negative message): set Status "Connected". Open the lead's
   LinkedIn Draft Doc (`link_mm3vnpss`) and extract the "FIRST MESSAGE" block to
@@ -155,8 +169,10 @@ For leads correctly at "Connection Sent," update Status (`color_mm3vgcvp`) with
   or surface the templated first message; sending canned copy on top of their
   personal reply reads as completely disjointed. Instead ELEVATE it to Dan: set
   Status "Replied", move the item to the "Replied (Dan to Respond Personally)"
-  group (group_mm3w6sdc) with move_item_to_group, capture the gist of what they
-  said in LinkedIn Insights (long_text_mm3wmhcw), and send Dan a notification
+  group (group_mm3w6sdc) with move_item_to_group, capture in LinkedIn Insights
+  (long_text_mm3wmhcw) a SHORT VERBATIM QUOTE of what they wrote taken directly
+  from the located reply email (not a paraphrase or an invented gist) plus the
+  email pointer, and send Dan a notification
   (create_notification: user_id "66543582", target_type "Project", target_id =
   the item id, text = a one-line "<Name> at <Org> replied on LinkedIn, respond
   personally"). Dan writes the reply himself. Never auto-send anything here.
@@ -177,14 +193,18 @@ are no em-dashes.
 
 ## Step 4: Report for approval
 
-Write a concise summary (no em-dashes):
+Write a concise summary (no em-dashes). Every accepted/replied entry must cite its
+backing email (sender, subject, date, folder); if you cannot cite one, it does not
+belong in the report as an acceptance or reply:
 
-- Who accepted or replied since the last check (name and org), the status you
-  set, and for each now Connected, the ready-to-send FIRST MESSAGE text (plus the
-  Doc link) for Dan to review, with the firm named "Relate Group."
+- Who accepted or replied since the last check (name and org), the backing email
+  it maps to, the status you set, and for each now Connected, the ready-to-send
+  FIRST MESSAGE text (plus the Doc link) for Dan to review, with the firm named
+  "Relate Group."
 - Any leads who REPLIED and were elevated to the "Replied (Dan to Respond
-  Personally)" group, with the gist of what they said. Call these out FIRST: they
-  are the warmest and most time-sensitive, and Dan answers them himself.
+  Personally)" group, with a short verbatim quote from their reply email (not a
+  paraphrase). Call these out FIRST: they are the warmest and most time-sensitive,
+  and Dan answers them himself.
 - Any leads marked Not Interested or Not a Fit, with a one-line reason.
 - Which leads are still pending (no email yet).
 - Any lead you skipped or restored under the no-regression guardrail (for
