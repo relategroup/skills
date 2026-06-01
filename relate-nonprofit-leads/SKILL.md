@@ -322,9 +322,10 @@ Field guide:
   (<date>) passed, archived"). You do the posting review; never write a vague "go
   review the posting." The message content lives in the draft Doc, so keep this
   field to the action.
-- MB 1st-Degree? (`color_mm3w8mpp`): REQUIRED on every item, every run. Yes / No /
-  Unknown (set in Step 5C). Never leave blank; default Unknown when it cannot be
-  checked.
+- MB 1st-Degree? (`color_mm3w8mpp`): REQUIRED on every item, every run. Set in
+  Step 5C. If the lead has a named person with a verified profile, this MUST be a
+  definite Yes or No (run the check, never punt to Unknown). Use Unknown ONLY for an
+  org-only lead with no named individual to check. Never leave blank.
 
 Fit Priority scoring:
 - High: ANY Tier 1 signal (RFP, Open Dev Role / Departure, Financial Distress),
@@ -395,19 +396,29 @@ referencing. Leave blank if nothing relevant.
 
 #### Step 5C: Michelle Boggs 1st-Degree check (via Chrome, every lead)
 
-Set MB 1st-Degree (`color_mm3w8mpp`) to Yes / No / Unknown. This asks whether the
-contact is also a 1st-degree connection of Michelle Boggs; a Yes means Michelle
-can make a warm intro. With the contact's profile open in Dan's logged-in Chrome:
-1. Open the lead's shared / mutual connections. The reliable method is the canned
-   shared-connections search: from the profile, click "X mutual connections," or
-   build the People search with `network=["F"]` and `connectionOf=["<the lead's
-   profile URN>"]`. (Get the URN from the profile page if needed.) Add the keyword
-   "Michelle Boggs" to that filtered search.
-2. Because Dan and Michelle are connected, any connection the lead shares with
-   Michelle appears here. If Michelle Boggs returns as a shared 1st-degree
-   connection, set "Yes". If the search loads and returns no Michelle, set "No".
-   If there is no verified personal profile, or the network cannot be read, set
-   "Unknown".
+Set MB 1st-Degree (`color_mm3w8mpp`). Whenever the lead has a NAMED person with a
+verified LinkedIn profile (Step 5A), you MUST resolve this to a definite Yes or No.
+"Unknown" is allowed ONLY when the lead is an organization with no named individual
+at all (no person to check). A dropped filter, a private connection list, or a
+3rd-degree profile are NOT reasons to use Unknown: the method below still returns a
+definite answer, so use it.
+
+A Yes means Michelle can make a warm intro. With the contact's profile open in
+Dan's logged-in Chrome:
+1. Run the shared-connections search built around DAN's network, not the lead's:
+   navigate to a People search with keyword "Michelle Boggs", `network=["F"]`, and
+   `connectionOf=["<the lead's profile URN>"]`. (Get the lead URN from the profile
+   page.) The `network=["F"]` facet is REQUIRED: it constrains results to Dan's own
+   1st-degree connections (the mutual-connections view) and is what makes the
+   filter actually render. Without it LinkedIn silently drops the connectionOf
+   filter and returns unfiltered junk, which is the false-read trap that produced
+   bad "Unknown" results before. Confirm the "1st" facet is active on the results
+   page before trusting them.
+2. Because Michelle is one of Dan's 1st-degree connections, if Michelle is also
+   connected to the lead she WILL appear in this search. So: if "Michelle Boggs"
+   returns as a result, set "Yes"; if the filtered search (1st facet active)
+   returns "No results found", set "No". A clean "No results" with the facet active
+   is a definite No, not an Unknown.
 This is read-only profile review: never send or accept anything here. Call out
 every "Yes" in the summary so Michelle can be looped in.
 
