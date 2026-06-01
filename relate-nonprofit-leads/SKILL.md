@@ -286,9 +286,15 @@ at-a-glance board columns filled, not just the deep text fields. These columns a
 what shows on the board face, so a lead with only Trigger Detail / Insights /
 Action filled reads as "almost blank." Before moving on from a lead, confirm each
 of these is set: Signal Type, Source, Date Detected, Sector, Location, Fit
-Priority, Status, MB 1st-Degree?, People (owner = Dan, id 66543582), plus Trigger
-Detail, LinkedIn Profile, LinkedIn Draft, LinkedIn Insights, and Action for Dan.
-Do not leave any of them blank. Field guide:
+Priority, Status, MB 1st-Degree?, plus Trigger Detail, LinkedIn Profile, LinkedIn
+Draft, LinkedIn Insights, and Action for Dan. Do not leave any of them blank.
+
+NEVER TOUCH THE PEOPLE COLUMN (`multiple_person_mm3wr7h`). Do not add, set, or
+change it on any lead, ever. Dan owns and uses that column himself after
+screening; leave whatever is there exactly as you found it. It is not part of the
+completeness gate.
+
+Field guide:
 
 - Trigger Detail (`long_text_mm3v43dc`): 1 to 3 sentences. What happened, the
   person and role if known, and why it fits Relate Group. Name both signals if
