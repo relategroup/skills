@@ -2,8 +2,9 @@
 name: relate-nonprofit-leads
 description: >-
   Find, score, and log nonprofit fundraising prospecting leads for Relate Group,
-  then draft a personalized LinkedIn outreach message for each as a Google Doc,
-  verify the contact, set the Michelle 1st-degree warm-intro flag, and advance
+  then draft a personalized LinkedIn outreach message for each into the lead's
+  Outreach Drafts column on the board, verify the contact, set the Michelle
+  1st-degree warm-intro flag, and advance
   fully prepped leads to "Ready to Send" for Dan's approval. Use whenever Dan
   wants to run the lead sweep, find new nonprofit prospects, add leads to the
   signal board, or generate outreach drafts ("run the sweep," "find leads," "add
@@ -11,8 +12,9 @@ description: >-
   development or campaign RFPs, open or vacated development leadership roles,
   departures, financial distress, capital campaigns, CRM migrations, strategic
   plans or mergers, newly hired CDOs / CEOs / EDs, and capacity grants. Research,
-  verification, and drafting only. It logs to the Monday board and creates Google
-  Doc drafts. It never sends a message or contacts anyone; Dan gives the final
+  verification, and drafting only. It logs to the Monday board and writes the
+  drafts into each lead's Outreach Drafts column (no Google Docs). It never sends
+  a message or contacts anyone; Dan gives the final
   word and sends through Chrome with him present.
 ---
 
@@ -77,7 +79,6 @@ If the board is rebuilt or columns change, update these IDs (call get_board_info
 to re-map).
 
 - Monday board: `18415579805` ("Relate — Nonprofit Signal Leads", Main workspace)
-- Drive folder for drafts: `1mhNV8Zt3V__y4sF_yoI7RXDr6wShtbaI` ("Relate LinkedIn Lead Drafts")
 - Groups: main "Leads" (`topics`); "Active Asks (Fractional / Interim / Contract)"
   (`group_mm3wstq7`); "Not Pursuing (Declined / Not a Fit / No Info)" (`group_mm3w5j3z`)
 - Column IDs:
@@ -91,7 +92,8 @@ to re-map).
   - Status (status): `color_mm3vgcvp`
   - LinkedIn Profile (link): `link_mm3w4dpm`
   - LinkedIn Insights (long_text): `long_text_mm3wmhcw`
-  - LinkedIn Draft (link): `link_mm3vnpss`
+  - Outreach Drafts (long_text): `long_text_mm3xb1qd` — the connection note + first message live here (no Google Doc)
+  - LinkedIn Draft (link): `link_mm3vnpss` — DEPRECATED, leave blank (replaced by Outreach Drafts)
   - MB 1st-Degree? (status: Yes / No / Unknown): `color_mm3w8mpp`
   - Action for Dan (long_text): `long_text_mm3wbvg2`
   - Msg Variant (status: "A (Current)" / "B (Alongside)"): `color_mm3whszp`
@@ -286,8 +288,8 @@ at-a-glance board columns filled, not just the deep text fields. These columns a
 what shows on the board face, so a lead with only Trigger Detail / Insights /
 Action filled reads as "almost blank." Before moving on from a lead, confirm each
 of these is set: Signal Type, Source, Date Detected, Sector, Location, Fit
-Priority, Status, MB 1st-Degree?, plus Trigger Detail, LinkedIn Profile, LinkedIn
-Draft, LinkedIn Insights, and Action for Dan. Do not leave any of them blank.
+Priority, Status, MB 1st-Degree?, plus Trigger Detail, LinkedIn Profile, Outreach
+Drafts, LinkedIn Insights, and Action for Dan. Do not leave any of them blank.
 
 NEVER TOUCH THE PEOPLE COLUMN (`multiple_person_mm3wr7h`). Do not add, set, or
 change it on any lead, ever. Dan owns and uses that column himself after
@@ -320,8 +322,8 @@ Field guide:
   (e.g. "Connect with <name> on LinkedIn using the drafted note," "Email
   <address> per the posting; Spark draft ready," "No action: RFP deadline
   (<date>) passed, archived"). You do the posting review; never write a vague "go
-  review the posting." The message content lives in the draft Doc, so keep this
-  field to the action.
+  review the posting." The message content lives in the Outreach Drafts column, so
+  keep this field to the action.
 - MB 1st-Degree? (`color_mm3w8mpp`): REQUIRED on every item, every run. Set in
   Step 5C. If the lead has a named person with a verified profile, this MUST be a
   definite Yes or No (run the check, never punt to Unknown). Use Unknown ONLY for an
@@ -434,7 +436,7 @@ draft it in Dan's Spark (Spark draft tool, dan@relate.consulting) so it is ready
 to review, and note in Action for Dan that a Spark draft is ready. Never send
 email automatically.
 
-Skip drafting for Low-fit leads (leave LinkedIn Draft blank). For each High or
+Skip drafting for Low-fit leads (leave Outreach Drafts blank). For each High or
 Medium lead, write as Dan, like a sharp marketing pro:
 - Peer to peer, warm, specific to the trigger. No buzzwords, no hard sell. Soft
   CTA only (connect, open a conversation, a quick call). Always name "Relate Group".
@@ -452,8 +454,8 @@ drafting, read the board's "Msg Variant" column (`color_mm3whszp`) across leads
 that already have a variant, and assign whichever variant has FEWER so far (tie
 goes to A); keep alternating within the run. Then TAG the lead: set
 `color_mm3whszp` to "A (Current)" or "B (Alongside)" (createLabelsIfMissing:true),
-and add a "Variant: A (Current)" or "Variant: B (Alongside)" line in the draft Doc
-header. BOTH variants must be fully personalized: insert the verified First Name,
+and add the matching "Variant:" line in the Outreach Drafts column (per the format
+in the save step below). BOTH variants must be fully personalized: insert the verified First Name,
 exact title, and org. Never leave a [bracket] in a Ready-to-Send draft. Both are
 em-dash free and say "Relate Group".
 
@@ -502,13 +504,24 @@ Co-Founder, Relate Group
 (Email note: dan@relate.group is per Dan's finalized copy; confirm vs.
 dan@relate.consulting and use whichever Dan confirms.)
 
-Save the draft as a Google Doc: create_file, contentMimeType "text/plain",
-parentId `1mhNV8Zt3V__y4sF_yoI7RXDr6wShtbaI`, title
-"LinkedIn Draft - <Org> (<contact or signal>)", textContent = the formatted draft
-(header with Org, Contact, Signal, the assigned Variant (A or B), any warm-intro
-note, then CONNECTION REQUEST and FIRST MESSAGE). The returned id makes the link
-`https://docs.google.com/document/d/<id>/edit`. Set LinkedIn Draft
-(`link_mm3vnpss`): `{"url":"<that url>","text":"Open draft"}`.
+Save the draft into the OUTREACH DRAFTS column on the item, NOT a Google Doc. (We
+no longer generate Docs; the draft lives on the lead's row.) Set Outreach Drafts
+(`long_text_mm3xb1qd`) with `change_item_column_values` to exactly this format:
+
+```
+=== OUTREACH DRAFTS ===
+Variant: <A (Current) | B (Alongside)>
+
+CONNECTION REQUEST (max ~300 chars):
+<the connection note text>
+
+FIRST MESSAGE (after they accept):
+<the first message text>
+```
+
+Keep the "=== OUTREACH DRAFTS ===" header line verbatim: the send and acceptance
+flows locate the draft by it. Leave the old LinkedIn Draft link column
+(`link_mm3vnpss`) blank for new leads; it is deprecated and no Doc is created.
 
 ### Step 7: Advance qualifying leads from "New" to "Ready to Send"
 
@@ -522,8 +535,8 @@ A lead QUALIFIES for Ready to Send only when ALL are true:
 - Fit Priority is High or Medium (Low never advances; it has no draft).
 - A VERIFIED individual contact in LinkedIn Profile (a confirmed person, not an
   org page and not a "[Name]" placeholder).
-- A draft Doc with a real, sendable connection request (no "[Name]", names "Relate
-  Group", em-dash free).
+- The Outreach Drafts column filled with a real, sendable connection request and
+  first message (no "[Name]", names "Relate Group", em-dash free).
 - Action for Dan is filled.
 - MB 1st-Degree is set to Yes / No / Unknown.
 - The signal is current (passed the Step 2 deadline check).
@@ -574,8 +587,8 @@ For each genuine ask, create_item in the Active Asks group with: name; Trigger
 Detail (one line plus a short quote of the ask); Source; Signal Type "Active Ask
 (Fractional/Interim)"; Location; Fit Priority usually High; Status New; verified
 LinkedIn Profile; Insights (role, org, why it is warm, plus the MB 1st-degree
-check); Action for Dan; then draft a warm reply Doc referencing their exact ask
-(not a generic pitch) and link it. Never comment or message automatically; draft
+check); Action for Dan; then write a warm reply referencing their exact ask
+(not a generic pitch) into the Outreach Drafts column. Never comment or message automatically; draft
 only, then advance to Ready to Send per Step 7.
 
 ## Consolidation note
