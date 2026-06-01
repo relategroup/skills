@@ -240,6 +240,15 @@ Association, American Cancer Society, or University of Miami is still a valued
 rapport hook for Dan. Exclude on current employer; keep past employer as a warm
 angle.
 
+HARD EXCLUSION 2 (category exclusions, never log, never surface): Also drop
+silently, regardless of fit, warmth, or signal strength:
+- Pride / LGBTQ organizations of any kind (Pride chambers, Pride centers, LGBTQ
+  advocacy or community orgs, etc.). Per Dan, this is a hard category exclusion.
+- Chambers of commerce and trade / membership / professional associations. These
+  are membership-funded business orgs, not donor-fundraising nonprofits, even when
+  the contact holds a CFRE or a development title. (Examples already dropped:
+  Powder Coating Institute, Tennessee Pride Chamber.)
+
 DEADLINE CHECK (required, before logging): verify the date of the underlying
 signal and any stated deadline. For RFPs and job/contract postings, find the
 proposal due date, application close date, or posting date, and confirm the YEAR.
@@ -270,7 +279,16 @@ moves it to the Not Pursuing group). Never move a lead backward along the pipeli
 ### Step 4: Log each lead
 
 create_item with name = organization name. Then change_item_column_values with
-createLabelsIfMissing set to true. Field guide:
+createLabelsIfMissing set to true.
+
+COMPLETENESS GATE (required): every newly logged lead must have ALL of the
+at-a-glance board columns filled, not just the deep text fields. These columns are
+what shows on the board face, so a lead with only Trigger Detail / Insights /
+Action filled reads as "almost blank." Before moving on from a lead, confirm each
+of these is set: Signal Type, Source, Date Detected, Sector, Location, Fit
+Priority, Status, MB 1st-Degree?, People (owner = Dan, id 66543582), plus Trigger
+Detail, LinkedIn Profile, LinkedIn Draft, LinkedIn Insights, and Action for Dan.
+Do not leave any of them blank. Field guide:
 
 - Trigger Detail (`long_text_mm3v43dc`): 1 to 3 sentences. What happened, the
   person and role if known, and why it fits Relate Group. Name both signals if
