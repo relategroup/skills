@@ -3,7 +3,7 @@ name: relate-linkedin-acceptance-check
 description: >-
   Run Dan Thorpe's LinkedIn acceptance check for the Relate Group prospecting
   pipeline. Detect, from Dan's Spark email AND from his LinkedIn inbox (read live
-  via Chrome), which pending LinkedIn connection requests have been accepted or
+  via Chrome, including the Sales Navigator messaging inbox), which pending LinkedIn connection requests have been accepted or
   have replied, update the Relate Group Monday board, and queue the next message
   for Dan to approve. Use whenever Dan says "run the acceptance
   check," "did anyone accept," "check LinkedIn accepts," "any connection
@@ -41,7 +41,7 @@ These rules matter on every run, so apply them to anything you read or write:
   one of the two sources of truth: (1) a Spark email in the danjthorpe@gmail.com
   mailbox, identified by sender, subject, date, and folder (Inbox / Archive /
   Spam); or (2) a specific message in Dan's LinkedIn inbox, viewed live via Chrome
-  (Step 2B), identified by the sender's name and the message text and time.
+  (Step 2B) or his Sales Navigator messaging inbox (Step 2C), identified by the sender's name and the message text and time.
   Record that pointer with the change (in the item update / LinkedIn Insights). If
   you cannot point to a specific email or a specific LinkedIn message, you may NOT
   change the lead's status and you may NOT surface a reply for it: leave it pending
@@ -164,6 +164,14 @@ Chrome every run. This is the most reliable source for replies. CRITICAL: do NOT
 
 Treat a LinkedIn-inbox reply exactly like a "MESSAGED" reply in Step 3: never queue
 or surface a templated message on top of it, elevate it to Dan.
+
+## Step 2C: Check Dan's Sales Navigator inbox via Chrome (required)
+
+Most Alongside outreach goes to 2nd and 3rd degree leads as Sales Navigator messages and InMail, and their replies land in the SALES NAVIGATOR messaging inbox, not the regular LinkedIn inbox. LinkedIn's email notification for a Sales Nav reply can also point at a different, stale thread for the same person in the regular inbox, so email and the regular inbox alone will miss or misread these. ALWAYS check the Sales Navigator inbox every run.
+
+1. With the Claude in Chrome tools, navigate to https://www.linkedin.com/sales/inbox/ and read the conversation list (get_page_text is reliable here).
+2. Judge each thread by the sender of its LAST message, exactly as in Step 2B: a preview that is Dan's own outgoing copy (for example the Alongside script) means no reply yet, so skip it; a preview in the other person's voice means they replied last. Ignore unrelated inbound sales or spam threads where someone is pitching Dan.
+3. For each lead who replied, open the thread, capture a short VERBATIM quote and the time, and match to a board lead by name and org. Treat it exactly like a MESSAGED reply in Step 3 (elevate to Dan, never queue a templated message), and post the full verbatim reply as a Monday comment per the Hard rules.
 
 ## Step 3: Match and update the board
 
