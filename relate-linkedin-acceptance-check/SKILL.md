@@ -36,7 +36,7 @@ These rules matter on every run, so apply them to anything you read or write:
   already sent a real message. A canned first message on top of their personal
   reply reads as completely disjointed. Real replies are routed to Dan to answer
   himself (see Step 3, "MESSAGED"), and their full verbatim reply is ALWAYS posted as an UPDATE (comment) on the Monday item with create_update, for EVERY reply, every time. That comment is the system of record for the reply text; never leave the reply only in a text column.
-- EMAIL IN A REPLY MEANS AUTO-TRIAGE. If a LinkedIn reply (regular inbox or Sales Navigator) contains the person's email address, then REGARDLESS of the lead's current status or group, immediately move the Monday item to the "Replied (Dan to Respond/Triage)" group (group_mm3w6sdc) with move_item_to_group, set Status (color_mm3vgcvp) to "Replied", and post their FULL verbatim reply as an UPDATE (comment) on the item with create_update. Sharing an email is a high-intent signal that Dan triages himself, so this placement overrides the normal status flow (it is an allowed forward move, never a regression).
+- EMAIL IN A REPLY MEANS AUTO-TRIAGE. If a LinkedIn reply (regular inbox or Sales Navigator) contains the person's email address, then REGARDLESS of the lead's current status or group, immediately move the Monday item to the "Replied (Dan to Respond/Triage)" group (group_mm3w6sdc) with move_item_to_group, set Status (color_mm3vgcvp) to "Replied", and post their FULL verbatim reply as an UPDATE (comment) on the item with create_update. Also write the exact email address they provided into the board's Email column (email_mm408nfj) with change_item_column_values, for example {"email_mm408nfj":{"email":"name@org.org","text":"name@org.org"}}. Sharing an email is a high-intent signal that Dan triages himself, so this placement overrides the normal status flow (it is an allowed forward move, never a regression).
 - EVIDENCE-BOUND ONLY. Every acceptance or reply you log, and every status change
   you make, MUST map to a specific, real piece of evidence you actually located in
   one of the two sources of truth: (1) a Spark email in the danjthorpe@gmail.com
@@ -88,6 +88,8 @@ use it as the backup of record.
   - LinkedIn Insights: `long_text_mm3wmhcw`
   - Action for Dan: `long_text_mm3wbvg2`
   - Dossier (link to the prospect dossier Google Doc): `link_mm40p4vh`
+  - Email (email): `email_mm408nfj` (the email address a lead provides in a LinkedIn reply)
+  - PPC (status, Yes/No): `color_mm4075sm` (Potential Paying Customer in next 90 days, from the dossier verdict)
 - Spark Desktop running with agent access enabled. LinkedIn notification email
   lands in the **danjthorpe@gmail.com** mailbox (not dan@relate.consulting).
 
