@@ -35,7 +35,7 @@ These rules matter on every run, so apply them to anything you read or write:
 - NEVER reply to, or queue or surface a templated message for, a contact who has
   already sent a real message. A canned first message on top of their personal
   reply reads as completely disjointed. Real replies are routed to Dan to answer
-  himself (see Step 3, "MESSAGED").
+  himself (see Step 3, "MESSAGED"), and their verbatim reply is also posted as an UPDATE (comment) on the Monday item with create_update so it appears in the item's update feed.
 - EVIDENCE-BOUND ONLY. Every acceptance or reply you log, and every status change
   you make, MUST map to a specific, real piece of evidence you actually located in
   one of the two sources of truth: (1) a Spark email in the danjthorpe@gmail.com
@@ -204,7 +204,7 @@ make NO change and surface nothing for it:
   email pointer, and send Dan a notification
   (create_notification: user_id "66543582", target_type "Project", target_id =
   the item id, text = a one-line "<Name> at <Org> replied on LinkedIn, respond
-  personally"). Dan writes the reply himself. Never auto-send anything here.
+  personally"). ALSO post the verbatim reply text as an UPDATE (a comment) on the Monday item with create_update, so the reply shows in the item's update feed and not only in the LinkedIn Insights column. Use an HTML body, e.g. <p><b>LinkedIn reply (Dan to respond personally):</b></p><p>...the verbatim quote...</p>. Dan writes the reply himself. Never auto-send anything here.
 - Clearly NEGATIVE reply (polite no, "not interested", "remove me", "wrong
   person"): set Status "Not Interested" and note what they said in LinkedIn
   Insights (`long_text_mm3wmhcw`). Queue no message.
