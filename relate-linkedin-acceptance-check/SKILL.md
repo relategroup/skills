@@ -36,6 +36,7 @@ These rules matter on every run, so apply them to anything you read or write:
   already sent a real message. A canned first message on top of their personal
   reply reads as completely disjointed. Real replies are routed to Dan to answer
   himself (see Step 3, "MESSAGED"), and their full verbatim reply is ALWAYS posted as an UPDATE (comment) on the Monday item with create_update, for EVERY reply, every time. That comment is the system of record for the reply text; never leave the reply only in a text column.
+- EMAIL IN A REPLY MEANS AUTO-TRIAGE. If a LinkedIn reply (regular inbox or Sales Navigator) contains the person's email address, then REGARDLESS of the lead's current status or group, immediately move the Monday item to the "Replied (Dan to Respond/Triage)" group (group_mm3w6sdc) with move_item_to_group, set Status (color_mm3vgcvp) to "Replied", and post their FULL verbatim reply as an UPDATE (comment) on the item with create_update. Sharing an email is a high-intent signal that Dan triages himself, so this placement overrides the normal status flow (it is an allowed forward move, never a regression).
 - EVIDENCE-BOUND ONLY. Every acceptance or reply you log, and every status change
   you make, MUST map to a specific, real piece of evidence you actually located in
   one of the two sources of truth: (1) a Spark email in the danjthorpe@gmail.com
@@ -206,7 +207,7 @@ make NO change and surface nothing for it:
 - MESSAGED (a real inbound reply from the lead, positive or neutral): DO NOT queue
   or surface the templated first message; sending canned copy on top of their
   personal reply reads as completely disjointed. Instead ELEVATE it to Dan: set
-  Status "Replied", move the item to the "Replied (Dan to Respond Personally)"
+  Status "Replied", move the item to the "Replied (Dan to Respond/Triage)"
   group (group_mm3w6sdc) with move_item_to_group, capture in LinkedIn Insights
   (long_text_mm3wmhcw) a SHORT VERBATIM QUOTE of what they wrote taken directly
   from the located reply email (not a paraphrase or an invented gist) plus the
