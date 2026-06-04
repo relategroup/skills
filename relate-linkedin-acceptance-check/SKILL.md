@@ -86,6 +86,7 @@ use it as the backup of record.
   - Trigger Detail: `long_text_mm3v43dc`
   - LinkedIn Insights: `long_text_mm3wmhcw`
   - Action for Dan: `long_text_mm3wbvg2`
+  - Dossier (link to the prospect dossier Google Doc): `link_mm40p4vh`
 - Spark Desktop running with agent access enabled. LinkedIn notification email
   lands in the **danjthorpe@gmail.com** mailbox (not dan@relate.consulting).
 
@@ -212,7 +213,7 @@ make NO change and surface nothing for it:
   email pointer, and send Dan a notification
   (create_notification: user_id "66543582", target_type "Project", target_id =
   the item id, text = a one-line "<Name> at <Org> replied on LinkedIn, respond
-  personally"). ALWAYS post the lead's full verbatim reply as an UPDATE (a comment) on the Monday item with create_update. This is REQUIRED for EVERY reply, every time, no exceptions. The comment is the system of record for the reply text and must contain the complete verbatim quote (HTML body). Do NOT bury the reply in a text column: the verbatim quote goes in the comment, and LinkedIn Insights holds only a brief context or next-step note, never the full reply. Use an HTML body, e.g. <p><b>LinkedIn reply (Dan to respond personally):</b></p><p>...the verbatim quote...</p>. Dan writes the reply himself. Never auto-send anything here.
+  personally"). ALWAYS post the lead's full verbatim reply as an UPDATE (a comment) on the Monday item with create_update. This is REQUIRED for EVERY reply, every time, no exceptions. The comment is the system of record for the reply text and must contain the complete verbatim quote (HTML body). Do NOT bury the reply in a text column: the verbatim quote goes in the comment, and LinkedIn Insights holds only a brief context or next-step note, never the full reply. Use an HTML body, e.g. <p><b>LinkedIn reply (Dan to respond personally):</b></p><p>...the verbatim quote...</p>. Dan writes the reply himself. Never auto-send anything here. If the reply shows interest (wants to meet, asks about Relate Group's services, or wants to join an "Alongside" group), ALSO draft a dossier per Step 3B and log its Google Doc link in the Dossier column (link_mm40p4vh).
 - Clearly NEGATIVE reply (polite no, "not interested", "remove me", "wrong
   person"): set Status "Not Interested" and note what they said in LinkedIn
   Insights (`long_text_mm3wmhcw`). Queue no message.
@@ -227,6 +228,19 @@ When unsure, leave the lead as is and flag it for Dan.
 When you surface any FIRST MESSAGE or reply text, make sure the firm reads as
 "Relate Group" (correct it if an older draft says just "Relate") and that there
 are no em-dashes.
+
+## Step 3B: Draft a prospect dossier (for interested leads)
+
+Whenever a lead signals real interest (they want to meet, ask about Relate Group's services, or want to join an "Alongside" group), draft a short dossier on their organization and on the person, and save it as a Google Doc. This is in addition to elevating the reply to Dan in Step 3, not a replacement.
+
+Keep it useful, not exhaustive (about one page). Cover:
+
+1. The organization: what it does, its mission and core programs, location, EIN, 501(c) status, and founding or exempt date.
+2. Financials from the most recent IRS Form 990s: total revenue, total expenses, net assets, and executive compensation (top officers' salaries). Use ProPublica Nonprofit Explorer (search the org name or EIN at https://projects.propublica.org/nonprofits/) plus the org's own site. If the org files only the 990-N e-postcard (gross receipts under 50,000 dollars) so no detailed 990 is public, say so plainly and note it signals an early-stage or micro-budget org. Never invent figures.
+3. A short bio of the person replying: role, education and background, focus, and network or positioning, drawn from their LinkedIn profile (read live via Chrome) plus any other public info. Note mutual connections if visible.
+4. A few talking points and next steps for Dan, tailored to what the lead asked for.
+
+Create the Doc with the Google Drive create_file tool (title like "Dossier - <Org> (<Person>)", text content, which converts to a Google Doc). Then put the Doc link in the lead's Dossier column (link_mm40p4vh) with change_item_column_values, for example {"link_mm40p4vh":{"url":"<doc url>","text":"Dossier - <Org>"}}. Call out the dossier and its link in the Step 4 report. The evidence-bound rule still applies: state only facts you actually found, and never invent financials.
 
 ## Step 4: Report for approval
 
