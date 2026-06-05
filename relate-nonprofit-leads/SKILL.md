@@ -410,22 +410,14 @@ at all (no person to check). A dropped filter, a private connection list, or a
 3rd-degree profile are NOT reasons to use Unknown: the method below still returns a
 definite answer, so use it.
 
-A Yes means Michelle can make a warm intro. With the contact's profile open in
-Dan's logged-in Chrome:
-1. Run the shared-connections search built around DAN's network, not the lead's:
-   navigate to a People search with keyword "Michelle Boggs", `network=["F"]`, and
-   `connectionOf=["<the lead's profile URN>"]`. (Get the lead URN from the profile
-   page.) The `network=["F"]` facet is REQUIRED: it constrains results to Dan's own
-   1st-degree connections (the mutual-connections view) and is what makes the
-   filter actually render. Without it LinkedIn silently drops the connectionOf
-   filter and returns unfiltered junk, which is the false-read trap that produced
-   bad "Unknown" results before. Confirm the "1st" facet is active on the results
-   page before trusting them.
-2. Because Michelle is one of Dan's 1st-degree connections, if Michelle is also
-   connected to the lead she WILL appear in this search. So: if "Michelle Boggs"
-   returns as a result, set "Yes"; if the filtered search (1st facet active)
-   returns "No results found", set "No". A clean "No results" with the facet active
-   is a definite No, not an Unknown.
+A Yes means Michelle can make a warm intro.
+
+DO NOT use a keyword search with a connectionOf filter for this. LinkedIn silently DROPS the connectionOf filter whenever a keyword is present, so a People search for "Michelle Boggs" in network=["F"] just returns Michelle every time (she is one of Dan's OWN 1st-degree connections), regardless of the lead. That method produced a long run of FALSE "Yes" results. The "1st" badge on that result is Michelle's degree to DAN, not to the lead, and the mutual-count subtext is Dan and Michelle's mutuals (identical for every lead), so both get misread as proof of a shared connection. Never trust that approach.
+
+Use the lead's OWN mutual-connections list, with the contact's profile open in Dan's logged-in Chrome:
+1. On the lead's profile, look for the mutual-connections facepile under their connection count (the line like "<Name> and N other mutual connections"). If there is NO mutual-connections element at all (common on 2nd and 3rd degree profiles), the lead has zero mutual connections with Dan, so Michelle cannot be one: set "No".
+2. If a mutual-connections element IS present, click it to open LinkedIn's own canned, lead-scoped list (the URL carries origin=MEMBER_PROFILE_CANNED_SEARCH and is already filtered to people connected to BOTH Dan and this lead). Do NOT add a keyword to that list, because adding a keyword re-triggers the same connectionOf-drop bug. Page through the unfiltered list and scan for "Michelle Boggs, MBA, CFRE" (GoFundMe / nonprofit fundraising, the correct Michelle).
+3. Set "Yes" ONLY if Michelle Boggs genuinely appears in that lead-scoped mutual-connections list. Otherwise set "No". A lead with no facepile, or whose mutual list does not contain Michelle, is a definite No.
 This is read-only profile review: never send or accept anything here. Call out
 every "Yes" in the summary so Michelle can be looped in.
 
