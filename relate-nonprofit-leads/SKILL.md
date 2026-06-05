@@ -357,6 +357,7 @@ in Trigger Detail, score it High.
 - Not a Fit: Claude or Dan judges the prospect not a match (poor sector, very
   large institution, interim, expired/stale lead).
 - Not Enough Info: no identifiable or verifiable decision-maker to pursue.
+- Do Not Send: Dan knows this org or person personally, or has otherwise flagged the lead as off-limits to automated outreach. NEVER send a connection request, message, or InMail to a Do Not Send lead, never advance it to Ready to Send, and never queue or send a draft for it. Dan handles these himself. Leave the item as is and take no outreach action.
 
 The three closing statuses (Not Interested, Not a Fit, Not Enough Info) trigger a
 Monday automation that moves the item into the Not Pursuing group, so set them
