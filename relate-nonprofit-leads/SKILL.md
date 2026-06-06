@@ -554,6 +554,10 @@ and which are still "New" and why. Report the A/B split this run (how many got
 Variant A vs Variant B) and the running board-wide A/B totals. Remind Dan nothing
 was sent: Ready to Send leads are queued and awaiting his final word.
 
+## SEND comments: process Dan's outbound queue on every sweep
+
+Every sweep run also processes Dan's SEND: queue, the same mechanism defined in the relate-linkedin-acceptance-check skill. A comment Dan posts on a lead item that STARTS with "SEND:" (case insensitive) is his pre-approved, pre-written outbound LinkedIn message for that lead, and it is the ONLY exception to the never-send rule. Collect SEND: comments (get_updates per item on active leads) that do not yet have a later "SENT via LinkedIn" confirmation comment on the same item, and deliver each one VERBATIM: strip only the marker, never edit or add anything, never send to anyone but that lead, never send the same comment twice. Use the lead's existing thread (regular LinkedIn DM for a 1st degree connection, or the existing Sales Navigator thread for an InMail lead) and verify the recipient's name in the compose header before sending. After it sends, post a confirmation update "SENT via LinkedIn on <date and time>:" followed by the full message text, set Status "Engaged (Their Court)", and move the item to group group_mm42dhz. If it cannot be delivered (not connected, no open thread, or the recipient cannot be verified), send nothing, post a comment explaining why, and notify Dan (user id 66543582). Comments without the SEND: marker are never sendable; they are pipeline notes, including this automation's own logs, which post from the same Monday account as Dan.
+
 ## Add-on sweep: Active Asks (public LinkedIn posts and demand signals)
 
 Optional sweep for nonprofit leaders publicly ASKING for fractional, interim, or
