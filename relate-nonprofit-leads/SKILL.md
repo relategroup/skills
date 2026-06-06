@@ -327,10 +327,7 @@ Field guide:
   (<date>) passed, archived"). You do the posting review; never write a vague "go
   review the posting." The message content lives in the Outreach Drafts column, so
   keep this field to the action.
-- MB 1st-Degree? (`color_mm3w8mpp`): REQUIRED on every item, every run. Set in
-  Step 5C. If the lead has a named person with a verified profile, this MUST be a
-  definite Yes or No (run the check, never punt to Unknown). Use Unknown ONLY for an
-  org-only lead with no named individual to check. Never leave blank.
+- MB 1st-Degree? (`color_mm3w8mpp`): set "Unknown" on every newly logged lead and leave it. The Michelle Boggs check is DEFERRED to reply time (per Dan, June 6, 2026): running it on every sweep lead slowed runs down for people who may never respond. The acceptance-check skill resolves it to a definite Yes or No when the lead replies, using the Step 5C method. Never leave the column blank.
 
 Fit Priority scoring:
 - High: ANY Tier 1 signal (RFP, Open Dev Role / Departure, Financial Distress),
@@ -402,14 +399,9 @@ former colleague, a strong warm-intro angle, so state it plainly. Also note othe
 hooks: notable prior roles, a location match, shared sector, a recent post worth
 referencing. Leave blank if nothing relevant.
 
-#### Step 5C: Michelle Boggs 1st-Degree check (via Chrome, every lead)
+#### Step 5C: Michelle Boggs 1st-Degree check (REPLY TIME ONLY; never during the sweep)
 
-Set MB 1st-Degree (`color_mm3w8mpp`). Whenever the lead has a NAMED person with a
-verified LinkedIn profile (Step 5A), you MUST resolve this to a definite Yes or No.
-"Unknown" is allowed ONLY when the lead is an organization with no named individual
-at all (no person to check). A dropped filter, a private connection list, or a
-3rd-degree profile are NOT reasons to use Unknown: the method below still returns a
-definite answer, so use it.
+TIMING (per Dan, June 6, 2026): do NOT run this check while sweeping or logging. Every new lead gets MB 1st-Degree (`color_mm3w8mpp`) = "Unknown" and keeps it until the lead REPLIES. When a reply elevates a lead to Replied (Triage), the acceptance-check skill runs this check ONCE and resolves it to a definite Yes or No. The method below is the canonical procedure for that reply-time check; nothing in the sweep should execute it.
 
 A Yes means Michelle can make a warm intro.
 
@@ -548,8 +540,8 @@ Never move a lead backward.
 
 Concise summary (no em-dashes): leads added, breakdown by signal type and tier,
 High-priority and stacked-signal leads by name, drafts created, profiles verified,
-any shared-employer (AHA / ACS / University of Miami) angles, every MB 1st-Degree
-"Yes" so Michelle can be looped in, leads sifted out for passed deadlines, and any
+any shared-employer (AHA / ACS / University of Miami) angles, any reply-time MB 1st-Degree
+"Yes" so Michelle can be looped in (the check no longer runs during the sweep), leads sifted out for passed deadlines, and any
 set to Not a Fit or Not Enough Info. State which leads advanced to "Ready to Send"
 and which are still "New" and why. Report the A/B split this run (how many got
 Variant A vs Variant B) and the running board-wide A/B totals. Remind Dan nothing
@@ -581,7 +573,7 @@ WHERE TO LOOK (vary queries each run):
 
 SCORING: an open ask for recommendations or a part-time / contract posting is Fit Priority High (the org is shopping for exactly what Relate Group sells, right now). A full-time grant writer posting is Medium (pitch interim or contract grant support while they hire, then grant strategy); raise it to High if the org is Florida / Southeast or matches the sector bench.
 
-PIPELINE: log each qualifying lead to Pipeline / Drafting with the full completeness gate (Signal Type "Grants Help", Source, Date Detected, Location, Sector, Fit Priority, verified decision-maker in LinkedIn Profile, MB check per Step 5C, LinkedIn Insights, Next Step naming the exact ask and channel). DRAFTING IS ON HOLD for this signal type: do NOT write outreach copy and do NOT advance Grants Help leads to Ready to Send. Dan is defining a dedicated message framework for grants outreach; until he locks it, set Outreach Drafts to exactly "(Grants outreach copy pending Dan's messaging direction)" and leave Status at "To Research" with everything else complete.
+PIPELINE: log each qualifying lead to Pipeline / Drafting with the full completeness gate (Signal Type "Grants Help", Source, Date Detected, Location, Sector, Fit Priority, verified decision-maker in LinkedIn Profile, MB 1st-Degree "Unknown" (check deferred to reply time per Step 5C), LinkedIn Insights, Next Step naming the exact ask and channel). DRAFTING IS ON HOLD for this signal type: do NOT write outreach copy and do NOT advance Grants Help leads to Ready to Send. Dan is defining a dedicated message framework for grants outreach; until he locks it, set Outreach Drafts to exactly "(Grants outreach copy pending Dan's messaging direction)" and leave Status at "To Research" with everything else complete.
 
 ## Add-on sweep: Active Asks (public LinkedIn posts and demand signals)
 
@@ -613,8 +605,7 @@ the whole game. Logged-in browser required.
 For each genuine ask, create_item in the Pipeline / Drafting group with: name; Trigger
 Detail (one line plus a short quote of the ask); Source; Signal Type "Active Ask
 (Fractional/Interim)"; Location; Fit Priority usually High; Status New; verified
-LinkedIn Profile; Insights (role, org, why it is warm, plus the MB 1st-degree
-check); Action for Dan; then write a warm reply referencing their exact ask
+LinkedIn Profile; Insights (role, org, why it is warm); MB 1st-Degree stays "Unknown" (reply-time check); Action for Dan; then write a warm reply referencing their exact ask
 (not a generic pitch) into the Outreach Drafts column. Never comment or message automatically; draft
 only, then advance to Ready to Send per Step 7.
 
