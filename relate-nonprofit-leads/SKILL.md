@@ -629,9 +629,7 @@ SEND METHOD BY DEGREE (try everyone, do not assume):
   Log Status "Invite Pending". The first message is held in Outreach Drafts for
   when they accept.
 - EMAIL-GATED (LinkedIn demands the person's email to connect): do not enter an
-  email you do not have. Try a Sales Navigator InMail instead (Message on the
-  Sales Nav lead opens an InMail; uses 1 credit; needs a subject). If InMail is not
-  available either, EXCLUDE the lead (do not log it) and move on.
+  email you do not have. Try a Sales Navigator InMail instead (Message on the Sales Nav lead opens an InMail; uses 1 credit; needs a subject). CONTENT RULE for EVERY email-gated InMail, campaign or signal sweep: the InMail carries ONLY the short congratulations / connection-style message (the same copy drafted as the CONNECTION REQUEST note). Never send the full first message by InMail; the longer follow-up in the series goes out ONLY after they connect with Dan. If InMail is not available either, EXCLUDE the lead (do not log it) and move on.
 - Verify each person on LinkedIn (right name, org, current CEO/ED role) before
   sending. SKIP the Michelle Boggs check on this rapid campaign (set MB 1st-Degree
   "Unknown" with a note "not run during rapid send push") to keep volume up.
@@ -681,8 +679,7 @@ Direct message (1st degree, one combined message; no "thanks for connecting"):
 > next date.
 
 InMail (email-gated fallback). Subject: "A free peer room for nonprofit CEOs".
-Body: same as the 1st-degree direct message above, ending "...just reply and I'll
-share the next date." (InMail has no "reply here" thread, so drop "here").
+Body: ONLY the short connection-request note above (the congratulations-style message), ending "If you're open to it, just reply and I'll share the next date." Do NOT use the full first message as the InMail body; the full message is held and sent only after the person connects.
 
 NOTHING auto-replies: if any of these people write back, route them to the Replied
 lane for Dan to answer personally (same rule as the acceptance-check skill).
