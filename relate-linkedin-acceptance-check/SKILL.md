@@ -8,7 +8,7 @@ description: >-
   for Dan to approve. Use whenever Dan says "run the acceptance
   check," "did anyone accept," "check LinkedIn accepts," "any connection
   accepts," "who connected back," "check for replies on my LinkedIn outreach,"
-  or when reconciling the "Connection Sent" leads on the signal board against new
+  or when reconciling the "Invite Pending" leads on the signal board against new
   LinkedIn notification emails. Detection and prep only: it NEVER sends a
   LinkedIn message. Dan approves and sends every message himself.
 ---
@@ -29,14 +29,14 @@ These rules matter on every run, so apply them to anything you read or write:
 - Always write the firm as "Relate Group," never just "Relate." If an older
   draft says "Relate," correct it to "Relate Group" when you surface it.
 - NEVER move a lead backward. This skill only ever advances a lead forward along
-  the status ladder (New, Ready to Send, Connection Sent, Connected, Followed Up,
+  the status ladder (New, Ready to Send, Invite Pending, Connected (No Note Yet), Followed Up (Awaiting Reply),
   plus the closing statuses). It must never set a lead to an earlier stage than
   it already holds. See the guardrail in Step 3.
 - NEVER reply to, or queue or surface a templated message for, a contact who has
   already sent a real message. A canned first message on top of their personal
   reply reads as completely disjointed. Real replies are routed to Dan to answer
   himself (see Step 3, "MESSAGED"), and their full verbatim reply is ALWAYS posted as an UPDATE (comment) on the Monday item with create_update, for EVERY reply, every time. That comment is the system of record for the reply text; never leave the reply only in a text column.
-- EMAIL IN A REPLY MEANS AUTO-TRIAGE. If a LinkedIn reply (regular inbox or Sales Navigator) contains the person's email address, then REGARDLESS of the lead's current status or group, immediately move the Monday item to the "Replied (Dan to Respond/Triage)" group (group_mm3w6sdc) with move_item_to_group, set Status (color_mm3vgcvp) to "Replied", and post their FULL verbatim reply as an UPDATE (comment) on the item with create_update. Also write the exact email address they provided into the board's Email column (email_mm408nfj) with change_item_column_values, for example {"email_mm408nfj":{"email":"name@org.org","text":"name@org.org"}}. Sharing an email is a high-intent signal that Dan triages himself, so this placement overrides the normal status flow (it is an allowed forward move, never a regression).
+- EMAIL IN A REPLY MEANS AUTO-TRIAGE. If a LinkedIn reply (regular inbox or Sales Navigator) contains the person's email address, then REGARDLESS of the lead's current status or group, immediately move the Monday item to the "Replied (Dan to Respond/Triage)" group (group_mm3w6sdc) with move_item_to_group, set Status (color_mm3vgcvp) to "Replied (Triage)", and post their FULL verbatim reply as an UPDATE (comment) on the item with create_update. Also write the exact email address they provided into the board's Email column (email_mm408nfj) with change_item_column_values, for example {"email_mm408nfj":{"email":"name@org.org","text":"name@org.org"}}. Sharing an email is a high-intent signal that Dan triages himself, so this placement overrides the normal status flow (it is an allowed forward move, never a regression).
 - EVIDENCE-BOUND ONLY. Every acceptance or reply you log, and every status change
   you make, MUST map to a specific, real piece of evidence you actually located in
   one of the two sources of truth: (1) a Spark email in the danjthorpe@gmail.com
@@ -61,17 +61,17 @@ use it as the backup of record.
 - CROSS-CHECK THE LOG BEFORE CHANGING A STATUS. Read the item's recent activity
   log (get_board_activity, or activity_logs for the item) and confirm its current
   state is real, not the residue of a prior bad change. If a status was recently
-  flipped backward (for example Followed Up to Connected), treat the
+  flipped backward (for example Followed Up (Awaiting Reply) to Connected (No Note Yet)), treat the
   furthest-along stage as the truth, flag it for Dan, and restore it rather than
   re-queuing a message that already went out.
 - FALSE-POSITIVE acceptances to reject (also in Step 2 and the Step 3 guardrail):
   a delivery confirmation ("Message accepted by <Name>"), an inbound invite ("I
-  want to connect"), or any lead already past Connection Sent. Do not advance or
+  want to connect"), or any lead already past Invite Pending. Do not advance or
   surface a message for these.
 - FALSE-NEGATIVE misses: an acceptance buried in Archive or Spam. Always check
   Inbox, Archive, AND Spam (Step 2) so a real acceptance is not missed.
 - NO SILENT OVERWRITE. When you change a status, write the prior value and the
-  reason into the lead's note (LinkedIn Insights), for example "was Followed Up;
+  reason into the lead's note (LinkedIn Insights), for example "was Followed Up (Awaiting Reply);
   first message already sent, do not resend." If you cannot tell whether a message
   already went out, STOP and flag for Dan rather than risk a double-send.
 
@@ -79,8 +79,8 @@ use it as the backup of record.
 
 - Monday board: `18415579805` ("Relate — Nonprofit Signal Leads", Main
   workspace). Key columns:
-  - Status: `color_mm3vgcvp` (labels include "Connection Sent", "Connected",
-    "Followed Up", "Not Interested", "Not a Fit", "Not Enough Info")
+  - Status: `color_mm3vgcvp` (labels include "Invite Pending", "Connected (No Note Yet)",
+    "Followed Up (Awaiting Reply)", "Not Interested", "Not a Fit", "Not Enough Info")
   - Outreach Drafts (long_text): `long_text_mm3xb1qd` — holds the CONNECTION REQUEST
     and FIRST MESSAGE for the lead (replaces the old Google Doc)
   - LinkedIn Profile: `link_mm3w4dpm`
@@ -98,21 +98,21 @@ If Spark is not reachable, note that and stop. Do not error out.
 ## Step 1: Get the leads to check
 
 On board `18415579805`, read the items whose Status (`color_mm3vgcvp`) is
-"Connection Sent". Use `get_board_items_page` with a filter on that column
+"Invite Pending". Use `get_board_items_page` with a filter on that column
 (call `get_board_info` first if you are unfamiliar with the board structure).
 
 For each lead, note: item id, organization name (item name), the person's name
 (from LinkedIn Profile `link_mm3w4dpm` or Trigger Detail), and the lead's Outreach
 Drafts text (`long_text_mm3xb1qd`).
 
-ONLY "Connection Sent" leads are in scope. Leads already at "Connected,"
-"Followed Up," or any closing status ("Not Interested," "Not a Fit," "Not Enough
+ONLY "Invite Pending" leads are in scope. Leads already at "Connected (No Note Yet),"
+"Followed Up (Awaiting Reply)," or any closing status ("Not Interested," "Not a Fit," "Not Enough
 Info") have already been accepted and advanced. Do not pull them into this run,
 do not change their status, and do not re-surface their first message: it has
-very likely already gone out. (A lead reaching "Followed Up" means the first
+very likely already gone out. (A lead reaching "Followed Up (Awaiting Reply)" means the first
 message was sent and followed up.)
 
-If there are no "Connection Sent" leads, write a short summary saying so and
+If there are no "Invite Pending" leads, write a short summary saying so and
 stop.
 
 ## Step 2: Check email via Spark
@@ -162,9 +162,9 @@ Chrome every run. This is the most reliable source for replies. CRITICAL: do NOT
    approximate time. This is the evidence pointer for that lead (per the
    evidence-bound rule).
 4. Match each replying person to a board lead by name and org. A reply can come
-   from a lead at ANY active stage (Connection Sent, Connected, or Followed Up):
+   from a lead at ANY active stage (Invite Pending, Connected (No Note Yet), or Followed Up (Awaiting Reply)):
    all of them are valid to elevate to Replied, because elevating to the Replied
-   lane is a forward move, not a regression. Also DETECT ACCEPTANCES IN CHROME, not only from email: open My Network > Connections (https://www.linkedin.com/mynetwork/invite-connect/connections/) sorted by "Recently added" and read the most recent connections, and glance at the Notifications page for "accepted your invitation" items. Any "Connection Sent" lead who now appears in recently-added Connections has ACCEPTED even if no acceptance email arrived; the recently-added Connections list is the most reliable acceptance signal. Match by name and org and treat as ACCEPTED in Step 3.
+   lane is a forward move, not a regression. Also DETECT ACCEPTANCES IN CHROME, not only from email: open My Network > Connections (https://www.linkedin.com/mynetwork/invite-connect/connections/) sorted by "Recently added" and read the most recent connections, and glance at the Notifications page for "accepted your invitation" items. Any "Invite Pending" lead who now appears in recently-added Connections has ACCEPTED even if no acceptance email arrived; the recently-added Connections list is the most reliable acceptance signal. Match by name and org and treat as ACCEPTED in Step 3.
 
 Treat a LinkedIn-inbox reply exactly like a "MESSAGED" reply in Step 3: never queue
 or surface a templated message on top of it, elevate it to Dan.
@@ -179,37 +179,37 @@ Most Alongside outreach goes to 2nd and 3rd degree leads as Sales Navigator mess
 
 ## Step 3: Match and update the board
 
-Match each notification's person to a "Connection Sent" lead by person name and
-org. Only act on matches to leads on the "Connection Sent" list. Note which
+Match each notification's person to a "Invite Pending" lead by person name and
+org. Only act on matches to leads on the "Invite Pending" list. Note which
 folder each matched notification came from (Inbox, Archive, or Spam) so Dan
 knows whether LinkedIn mail is landing in Spam.
 
 GUARDRAIL (no regression, no double-send): before changing any status, confirm
-the lead's CURRENT status is "Connection Sent." If the matched person's lead is
-already at "Connected," "Followed Up," or a closing status, STOP on that lead:
+the lead's CURRENT status is "Invite Pending." If the matched person's lead is
+already at "Connected (No Note Yet)," "Followed Up (Awaiting Reply)," or a closing status, STOP on that lead:
 do not change its status (never move it backward) and do not surface its first
 message, because it was already accepted and advanced and the message has very
 likely already gone out. The one exception is a clearly NEW negative reply from
-someone already Connected or Followed Up (a genuine "not interested" / "remove
+someone already Connected (No Note Yet) or Followed Up (Awaiting Reply) (a genuine "not interested" / "remove
 me"): you may then set the appropriate closing status, since that is still a
 forward move. If you ever see that a lead was recently knocked backward (for
-example "Followed Up" changed to "Connected"), treat the furthest-along stage as
+example "Followed Up (Awaiting Reply)" changed to "Connected (No Note Yet)"), treat the furthest-along stage as
 the truth, flag it for Dan, and restore it rather than re-queuing the message.
 
-For leads correctly at "Connection Sent," update Status (`color_mm3vgcvp`) with
+For leads correctly at "Invite Pending," update Status (`color_mm3vgcvp`) with
 `change_item_column_values`, passing `createLabelsIfMissing: true`. In EVERY case
 below, you must already have a specific backing email located in the
 danjthorpe@gmail.com mailbox (sender, subject, date, folder), OR an equivalent Chrome-observed signal (a specific LinkedIn message, or a recently-added Connections-list entry or "accepted your invitation" notification viewed live). Record that pointer
 in LinkedIn Insights with the status change. If there is no such backing evidence (email or Chrome signal) for a lead,
 make NO change and surface nothing for it:
 
-- ACCEPTED (no negative message): set Status "Connected". Read the lead's Outreach
+- ACCEPTED (no negative message): set Status "Connected (No Note Yet)". Read the lead's Outreach
   Drafts column (`long_text_mm3xb1qd`) and take the "FIRST MESSAGE" block to have
   ready for Dan. Do NOT send it.
 - MESSAGED (a real inbound reply from the lead, positive or neutral): DO NOT queue
   or surface the templated first message; sending canned copy on top of their
   personal reply reads as completely disjointed. Instead ELEVATE it to Dan: set
-  Status "Replied", move the item to the "Replied (Dan to Respond/Triage)"
+  Status "Replied (Triage)", move the item to the "Replied (Dan to Respond/Triage)"
   group (group_mm3w6sdc) with move_item_to_group, capture in LinkedIn Insights
   (long_text_mm3wmhcw) a SHORT VERBATIM QUOTE of what they wrote taken directly
   from the located reply email (not a paraphrase or an invented gist) plus the
@@ -253,7 +253,7 @@ backing email (sender, subject, date, folder); if you cannot cite one, it does n
 belong in the report as an acceptance or reply:
 
 - Who accepted or replied since the last check (name and org), the backing email
-  it maps to, the status you set, and for each now Connected, the ready-to-send
+  it maps to, the status you set, and for each now Connected (No Note Yet), the ready-to-send
   FIRST MESSAGE text (from the Outreach Drafts column) for Dan to review, with the
   firm named "Relate Group."
 - Any leads who REPLIED and were elevated to the "Replied (Dan to Respond
@@ -263,7 +263,7 @@ belong in the report as an acceptance or reply:
 - Any leads marked Not Interested or Not a Fit, with a one-line reason.
 - Which leads are still pending (no email yet).
 - Any lead you skipped or restored under the no-regression guardrail (for
-  example an acceptance email for someone already Connected or Followed Up),
+  example an acceptance email for someone already Connected (No Note Yet) or Followed Up (Awaiting Reply)),
   so Dan knows it was intentionally not re-queued.
 - Which folder each notification came from (Inbox, Archive, Spam), so Dan knows
   if LinkedIn mail is landing in Spam.
