@@ -310,7 +310,7 @@ Field guide:
 - Signal Type (`color_mm3vbsjy`), one of: "RFP / Seeking Consultant",
   "Open Dev Role / Departure", "Financial Distress", "Capital Campaign",
   "New CEO/ED", "CRM Migration", "Strategic Plan / Merger / Milestone",
-  "New CDO/Dev Lead", "Capacity Grant / Funding Cliff". If two apply, label the
+  "New CDO/Dev Lead", "Capacity Grant / Funding Cliff", "Grants Help". If two apply, label the
   highest-intent one and note the other in Trigger Detail. (Board label note: open
   job postings have historically been labeled "Dev Job Posting" and public asks
   "Active Ask (Fractional/Interim)"; reuse existing labels.)
@@ -558,6 +558,30 @@ was sent: Ready to Send leads are queued and awaiting his final word.
 ## SEND comments: process Dan's outbound queue on every sweep
 
 Every sweep run also processes Dan's SEND: queue, the same mechanism defined in the relate-linkedin-acceptance-check skill. A comment Dan posts on a lead item that STARTS with "SEND:" (case insensitive) is his pre-approved, pre-written outbound LinkedIn message for that lead, and it is the ONLY exception to the never-send rule. Collect SEND: comments from EVERY item in EVERY group on the board, no group excluded (use the board-level updates feed via all_monday_api, or get_updates per item; this includes Pipeline / Drafting, Outreach Sent (Awaiting), Replied (Dan to Triage), Engaged (Their Court), With Emily, Nurture / Later, and Not Pursuing) that do not yet have a later "SENT via LinkedIn" confirmation comment on the same item, and deliver each one VERBATIM: strip only the marker, never edit or add anything, never send to anyone but that lead, never send the same comment twice. Use the lead's existing thread (regular LinkedIn DM for a 1st degree connection, or the existing Sales Navigator thread for an InMail lead) and verify the recipient's name in the compose header before sending. After it sends, post a confirmation update "SENT via LinkedIn on <date and time>:" followed by the full message text, set Status "Engaged (Their Court)", and move the item to group group_mm42dhz. If it cannot be delivered (not connected, no open thread, or the recipient cannot be verified), send nothing, post a comment explaining why, and notify Dan (user id 66543582). Comments without the SEND: marker are never sendable; they are pipeline notes, including this automation's own logs, which post from the same Monday account as Dan.
+
+## Add-on sweep: Grants Help (grant writer demand)
+
+Run this with every sweep. It hunts for nonprofit leaders of ANY title (ED / CEO, CDO, development or program staff, operations, board members) signaling they need help with GRANTS. This maps directly to Relate Group's grant strategy and grant writing bench, so treat it as Tier 1 intent. Signal Type label: "Grants Help" (already on the Signal Type column; pass createLabelsIfMissing true anyway).
+
+WHAT QUALIFIES (any one of these):
+- Hiring a PART-TIME, contract, or fractional grant writer.
+- Filling a FULL-TIME grant writer / grants manager position.
+- Openly asking for suggestions or recommendations for companies, firms, consultants, freelancers, or side hustlers who can help with grants ("anyone know a good grant writer?").
+
+AUTOMATIC EXCLUSIONS (never log):
+- Anyone seeking VOLUNTEER or pro bono grant help (volunteer grant writer posts, Catchafire / Taproot style asks). No budget means no lead.
+- Consultants and competitors: anyone advertising their own grant services, grant writers seeking work for themselves, trainers and webinar sellers, and lead-generation content.
+- All standing exclusions still apply: US nonprofits only, national federated charities and their chapters, chambers and trade or membership associations, Pride/LGBTQ orgs, and stale postings per the Step 2 deadline check.
+
+WHERE TO LOOK (vary queries each run):
+1. LinkedIn CONTENT search (linkedin.com/search/results/content/, logged in, sort Latest): "looking for a grant writer"; "grant writer recommendations"; "anyone recommend" grant writer; "need help with grants"; "part time grant writer"; "fractional grant writer"; hashtags #grantwriting #grantwriter #nonprofitfunding. READ each post and classify the poster before logging; the feed is dominated by sellers, and careful classification is the whole game.
+2. LinkedIn JOBS: "grant writer" filtered to part-time and contract; full-time postings also count (see scoring).
+3. LinkedIn GROUPS Dan belongs to (nonprofit leadership and grant-professional groups): scan recent posts for genuine asks.
+4. NON-LinkedIn channels: Idealist.org (grant writer roles, part-time / contract / full-time), Work for Good, Chronicle of Philanthropy jobs, Philanthropy News Digest job board, Foundation List, Indeed ("part time grant writer" nonprofit), state nonprofit association job and RFP boards, and Reddit (r/nonprofit and r/grantwriting threads asking for grant writer recommendations; log only if the org is identifiable).
+
+SCORING: an open ask for recommendations or a part-time / contract posting is Fit Priority High (the org is shopping for exactly what Relate Group sells, right now). A full-time grant writer posting is Medium (pitch interim or contract grant support while they hire, then grant strategy); raise it to High if the org is Florida / Southeast or matches the sector bench.
+
+PIPELINE: log each qualifying lead to Pipeline / Drafting with the full completeness gate (Signal Type "Grants Help", Source, Date Detected, Location, Sector, Fit Priority, verified decision-maker in LinkedIn Profile, MB check per Step 5C, LinkedIn Insights, Next Step naming the exact ask and channel). DRAFTING IS ON HOLD for this signal type: do NOT write outreach copy and do NOT advance Grants Help leads to Ready to Send. Dan is defining a dedicated message framework for grants outreach; until he locks it, set Outreach Drafts to exactly "(Grants outreach copy pending Dan's messaging direction)" and leave Status at "To Research" with everything else complete.
 
 ## Add-on sweep: Active Asks (public LinkedIn posts and demand signals)
 
