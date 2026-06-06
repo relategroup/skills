@@ -56,7 +56,7 @@ value to new value); treat it as the backup of record. Apply all three rules:
    Status, retiring a lead, changing a verified contact (link_mm3w4dpm), or
    anything a downstream send depends on, read that item's recent activity log
    (get_board_activity, or activity_logs via the API, filtered to the item). If
-   the log shows a backward status move (for example Followed Up to Connected), a
+   the log shows a backward status move (for example Followed Up (Awaiting Reply) to Connected (No Note Yet)), a
    contact or field that changed unexpectedly, or a conflict with what you are
    about to do, STOP. Do not act on the suspect state: flag it to Dan, restore the
    furthest-along true value, and note what you found. Never move a lead backward.
@@ -72,7 +72,7 @@ value to new value); treat it as the backup of record. Apply all three rules:
 
 3. NO SILENT OVERWRITE. Whenever you change a Status or a verified contact, write
    the PRIOR value and the reason into the lead's note (Action for Dan or LinkedIn
-   Insights), for example "was Connected; set to Followed Up on <date> because
+   Insights), for example "was Connected (No Note Yet); set to Followed Up (Awaiting Reply) on <date> because
    <reason>". That puts a one-glance backup on the card on top of Monday's log.
    This applies to manual corrections too: if you are fixing a value, record what
    it was.
@@ -83,8 +83,7 @@ If the board is rebuilt or columns change, update these IDs (call get_board_info
 to re-map).
 
 - Monday board: `18415579805` ("Relate — Nonprofit Signal Leads", Main workspace)
-- Groups: main "Leads" (`topics`); "Active Asks (Fractional / Interim / Contract)"
-  (`group_mm3wstq7`); "Connection Sent / Followed Up" (`group_mm3w1p1z`); "Replied (Dan to Respond Personally)" (`group_mm3w6sdc`); "Not Pursuing (Declined / Not a Fit / No Info)" (`group_mm3w5j3z`)
+- Groups: new leads go in "Pipeline / Drafting" (`group_mm42t1gk`); "Outreach Sent (Awaiting)" (`group_mm3w1p1z`); "Replied (Dan to Triage)" (`group_mm3w6sdc`); "Engaged (Their Court)" (`group_mm42dhz`); "With Emily" (`topics`); "Nurture / Later" (`group_mm40jb4q`); "Not Pursuing" (`group_mm3w5j3z`). Active Asks leads also start in Pipeline / Drafting (the old Active Asks group is retired).
 - Column IDs:
   - Trigger Detail (long_text): `long_text_mm3v43dc`
   - Source (link): `link_mm3vj8yb`
@@ -350,9 +349,9 @@ in Trigger Detail, score it High.
 
 - New: freshly logged, prep not yet complete.
 - Ready to Send: fully prepped and queued, awaiting Dan's go (see Step 7).
-- Connection Sent: connection request sent, awaiting acceptance. On setting this status (the request has gone out), move the item into the "Connection Sent / Followed Up" group (`group_mm3w1p1z`) with move_object.
-- Connected: invitation accepted, ready for the first message.
-- Followed Up: first message sent. On setting this status, move the item into the "Connection Sent / Followed Up" group (`group_mm3w1p1z`) with move_object.
+- Invite Pending: connection request sent, awaiting acceptance. On setting this status (the request has gone out), move the item into the "Outreach Sent (Awaiting)" group (`group_mm3w1p1z`) with move_object.
+- Connected (No Note Yet): invitation accepted, ready for the first message.
+- Followed Up (Awaiting Reply): first message sent. On setting this status, move the item into the "Outreach Sent (Awaiting)" group (`group_mm3w1p1z`) with move_object.
 - Not Interested: person replied negatively or asked to stop.
 - Not a Fit: Claude or Dan judges the prospect not a match (poor sector, very
   large institution, interim, expired/stale lead).
@@ -361,8 +360,10 @@ in Trigger Detail, score it High.
 
 The three closing statuses (Not Interested, Not a Fit, Not Enough Info) trigger a
 Monday automation that moves the item into the Not Pursuing group, so set them
-accurately and promptly. Never move a lead backward (e.g. from Followed Up back to
-Connected).
+accurately and promptly. Never move a lead backward (e.g. from Followed Up (Awaiting Reply) back to
+Connected (No Note Yet)).
+
+Later stages are managed by the acceptance-check skill: "Replied (Triage)", "Engaged (Their Court)", "With Emily", "Meeting Set", and "Nurture (Later)". When this sweep logs a SENT lead (Invite Pending, Followed Up (Awaiting Reply), or an InMail send), also stamp Channel (status column color_mm42t2q9, label "Connection Request" or "InMail" per the send method) and Owner (people column multiple_person_mm42a5bj, Dan, person id 66543582), passing createLabelsIfMissing true.
 
 ### Step 5: Identify and AUTO-VERIFY the contact (do the work yourself)
 
@@ -557,7 +558,7 @@ was sent: Ready to Send leads are queued and awaiting his final word.
 
 Optional sweep for nonprofit leaders publicly ASKING for fractional, interim, or
 development help, the warmest signal of all. Results go into the "Active Asks"
-group (`group_mm3wstq7`), not the main group.
+group (`group_mm42t1gk`), not the main group.
 
 Honest constraint: LinkedIn content search is noisy (dominated by consultants
 advertising their own services). Quality over quantity; careful classification is
@@ -580,7 +581,7 @@ the whole game. Logged-in browser required.
    pulled postings are not pursued: mark Not a Fit, note why in Action for Dan, and
    they move to the Not Pursuing group.
 
-For each genuine ask, create_item in the Active Asks group with: name; Trigger
+For each genuine ask, create_item in the Pipeline / Drafting group with: name; Trigger
 Detail (one line plus a short quote of the ask); Source; Signal Type "Active Ask
 (Fractional/Interim)"; Location; Fit Priority usually High; Status New; verified
 LinkedIn Profile; Insights (role, org, why it is warm, plus the MB 1st-degree
@@ -618,9 +619,9 @@ MESSAGING RULES (locked):
 SEND METHOD BY DEGREE (try everyone, do not assume):
 - ALREADY CONNECTED (1st degree): you cannot send a connection request, so send the
   invite as a DIRECT MESSAGE (the "first message" copy below). Log Status
-  "Followed Up".
+  "Followed Up (Awaiting Reply)".
 - NOT CONNECTED (2nd / 3rd degree): send a CONNECTION REQUEST with the note below.
-  Log Status "Connection Sent". The first message is held in Outreach Drafts for
+  Log Status "Invite Pending". The first message is held in Outreach Drafts for
   when they accept.
 - EMAIL-GATED (LinkedIn demands the person's email to connect): do not enter an
   email you do not have. Try a Sales Navigator InMail instead (Message on the
@@ -636,7 +637,7 @@ Source = the NFP CEOs list URL, Date Detected = today, Location, Sector, Fit
 Priority (Medium default, High for Florida or strong-fit), Status per the method
 above, MB "Unknown", LinkedIn Profile, a short Insights line, an Action for Dan,
 and the Outreach Drafts column holding the exact message(s) sent. Only log leads
-that actually sent; excluded/unreachable leads are not logged. After the item is created and its Status set (Connection Sent for 2nd/3rd degree, Followed Up for 1st degree), MOVE it into the "Connection Sent / Followed Up" group (`group_mm3w1p1z`) with move_object so every sent Alongside lead lands there instead of New Leads.
+that actually sent; excluded/unreachable leads are not logged. After the item is created and its Status set (Invite Pending for 2nd/3rd degree, Followed Up (Awaiting Reply) for 1st degree), MOVE it into the "Outreach Sent (Awaiting)" group (`group_mm3w1p1z`) with move_object so every sent Alongside lead lands there instead of New Leads.
 
 VARIANT B TEMPLATES (personalize [First], keep "Alongside" quoted, no em-dash):
 
