@@ -83,7 +83,7 @@ If the board is rebuilt or columns change, update these IDs (call get_board_info
 to re-map).
 
 - Monday board: `18415579805` ("Relate — Nonprofit Signal Leads", Main workspace)
-- Groups: new leads go in "Pipeline / Drafting" (`group_mm42t1gk`); "Outreach Sent (Awaiting)" (`group_mm3w1p1z`); "Replied (Dan to Triage)" (`group_mm3w6sdc`); "Engaged (Their Court)" (`group_mm42dhz`); "With Emily" (`topics`); "Nurture / Later" (`group_mm40jb4q`); "Not Pursuing" (`group_mm3w5j3z`). Active Asks leads also start in Pipeline / Drafting (the old Active Asks group is retired).
+- Groups: new leads go in "Pipeline / Drafting" (`group_mm42t1gk`); "Outreach Sent (Awaiting)" (`group_mm3w1p1z`, SIGNAL leads only); "Alongside Campaign (Awaiting)" (`group_mm422a7v`, cold Alongside campaign sends; the split is by origin, not message variant); "Replied (Dan to Triage)" (`group_mm3w6sdc`); "Engaged (Their Court)" (`group_mm42dhz`); "With Emily" (`topics`); "Nurture / Later" (`group_mm40jb4q`); "Not Pursuing" (`group_mm3w5j3z`). Active Asks leads also start in Pipeline / Drafting (the old Active Asks group is retired).
 - Column IDs:
   - Trigger Detail (long_text): `long_text_mm3v43dc`
   - Source (link): `link_mm3vj8yb`
@@ -640,7 +640,7 @@ Source = the NFP CEOs list URL, Date Detected = today, Location, Sector, Fit
 Priority (Medium default, High for Florida or strong-fit), Status per the method
 above, MB "Unknown", LinkedIn Profile, a short Insights line, an Action for Dan,
 and the Outreach Drafts column holding the exact message(s) sent. Only log leads
-that actually sent; excluded/unreachable leads are not logged. After the item is created and its Status set (Invite Pending for 2nd/3rd degree, Followed Up (Awaiting Reply) for 1st degree), MOVE it into the "Outreach Sent (Awaiting)" group (`group_mm3w1p1z`) with move_object so every sent Alongside lead lands there instead of New Leads.
+that actually sent; excluded/unreachable leads are not logged. After the item is created and its Status set (Invite Pending for 2nd/3rd degree, Followed Up (Awaiting Reply) for 1st degree), MOVE it into the "Alongside Campaign (Awaiting)" group (`group_mm422a7v`) with move_object so every sent Alongside campaign lead lands there instead of New Leads.
 
 VARIANT B TEMPLATES (personalize [First], keep "Alongside" quoted, no em-dash):
 
