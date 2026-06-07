@@ -2,31 +2,24 @@
 name: relate-nonprofit-leads
 description: >-
   Find, score, and log nonprofit fundraising prospecting leads for Relate Group,
-  then draft a personalized LinkedIn outreach message for each into the lead's
-  Outreach Drafts column on the board, verify the contact, and advance
-  fully prepped leads to "Ready to Send" for Dan's approval (the Michelle Boggs
-  1st-degree check runs at reply time only, never during the sweep). Use whenever Dan
-  wants to run the lead sweep, find new nonprofit prospects, add leads to the
-  signal board, or generate outreach drafts ("run the sweep," "find leads," "add
-  more leads," "any new prospects"), or as the scheduled daily run. ALSO covers the
-  standing NFP CEOs List "Alongside" re-engagement campaign ("work the NFP CEOs
-  list," "send the Alongside invites," "resume the NFP CEOs sends from #N"): cold
-  Variant B peer-group invites to Dan's curated Sales Navigator list (see the
-  "Add-on campaign" section). Covers
-  development or campaign RFPs, open or vacated development leadership roles,
-  departures, financial distress, capital campaigns, CRM migrations, strategic
-  plans or mergers, newly hired CDOs / CEOs / EDs, and capacity grants. Research,
-  verification, and drafting only. It logs to the Monday board and writes the
-  drafts into each lead's Outreach Drafts column (no Google Docs). It never sends
-  a message or contacts anyone; Dan gives the final
-  word and sends through Chrome with him present.
+  then draft personalized outreach into each lead's Outreach Drafts column,
+  verify the contact, set the Michelle 1st-degree flag, and advance prepped
+  leads to "Ready to Send" for Dan's approval. Trigger on "run the sweep," "find
+  leads," "add more leads," "any new prospects," or the scheduled daily run.
+  Covers RFPs, open or vacated dev leadership roles, financial distress, capital
+  campaigns, CRM migrations, strategic plans or mergers, new CDOs / CEOs / EDs,
+  capacity grants, and grant-writer hiring signals (the Grants Help lane). Also
+  covers the NFP CEOs List "Alongside" campaign ("work the NFP CEOs list").
+  Research and drafting only: logs to the Monday board, writes outreach copy,
+  and drafts email in Spark from dan@relate.group when an address is listed.
+  Sends happen solely on Dan's explicit instruction.
 ---
 
 # Relate Group Nonprofit Signal Leads (canonical)
 
 This is the single source of truth for the Relate Group lead sweep. It runs both
 on demand ("run the sweep") and as the scheduled daily task. Both entry points
-share this workflow and the same Monday board (no Drive folder; drafts live on the board); dedupe
+share this workflow, the same Monday board, and the same Drive folder; dedupe
 protects against overlap. Do not keep a second, separate sweep skill: this file
 supersedes the older "relate-nonprofit-signal-leads" and "relate-nonprofit-leads"
 versions.
@@ -56,7 +49,7 @@ value to new value); treat it as the backup of record. Apply all three rules:
    Status, retiring a lead, changing a verified contact (link_mm3w4dpm), or
    anything a downstream send depends on, read that item's recent activity log
    (get_board_activity, or activity_logs via the API, filtered to the item). If
-   the log shows a backward status move (for example Followed Up (Awaiting Reply) to Connected (No Note Yet)), a
+   the log shows a backward status move (for example Followed Up to Connected), a
    contact or field that changed unexpectedly, or a conflict with what you are
    about to do, STOP. Do not act on the suspect state: flag it to Dan, restore the
    furthest-along true value, and note what you found. Never move a lead backward.
@@ -72,7 +65,7 @@ value to new value); treat it as the backup of record. Apply all three rules:
 
 3. NO SILENT OVERWRITE. Whenever you change a Status or a verified contact, write
    the PRIOR value and the reason into the lead's note (Action for Dan or LinkedIn
-   Insights), for example "was Connected (No Note Yet); set to Followed Up (Awaiting Reply) on <date> because
+   Insights), for example "was Connected; set to Followed Up on <date> because
    <reason>". That puts a one-glance backup on the card on top of Monday's log.
    This applies to manual corrections too: if you are fixing a value, record what
    it was.
@@ -83,7 +76,14 @@ If the board is rebuilt or columns change, update these IDs (call get_board_info
 to re-map).
 
 - Monday board: `18415579805` ("Relate — Nonprofit Signal Leads", Main workspace)
-- Groups: new leads go in "Pipeline / Drafting" (`group_mm42t1gk`) EXCEPT Grants Help leads, which go in "Grants Help" (`group_mm43afrq`, the pre-engagement holding pen); "Outreach Sent (Awaiting)" (`group_mm3w1p1z`, SIGNAL leads only); "Alongside Campaign (Awaiting)" (`group_mm422a7v`, cold Alongside campaign sends; the split is by origin, not message variant); "Replied (Dan to Triage)" (`group_mm3w6sdc`); "Engaged (Their Court)" (`group_mm42dhz`); "With Emily" (`topics`); "Nurture / Later" (`group_mm40jb4q`); "Not Pursuing" (`group_mm3w5j3z`). Active Asks leads also start in Pipeline / Drafting (the old Active Asks group is retired).
+- Groups: main "Leads" (`topics`); "Grants Help" (`group_mm43afrq`);
+  "Outreach Sent (Awaiting)" (`group_mm3w1p1z`); "Engaged (Their Court)"
+  (`group_mm42dhz`); "Replied (Dan to Respond Personally)" (`group_mm3w6sdc`);
+  "Active Asks (Fractional / Interim / Contract)" (`group_mm3wstq7`);
+  "Not Pursuing (Declined / Not a Fit / No Info)" (`group_mm3w5j3z`)
+- Outreach email sender: dan@relate.group, a Spark alias of the
+  dan@relate.consulting account (pass account "dan@relate.group" to the Spark
+  draft tool). Dan never applies through portals.
 - Column IDs:
   - Trigger Detail (long_text): `long_text_mm3v43dc`
   - Source (link): `link_mm3vj8yb`
@@ -168,6 +168,11 @@ TIER 3 (context, lighter weight):
 9. Capacity Grant / Funding Cliff: a capacity-building or matching grant, OR a
    major grant ending or lost. A plain large grant win is LOW intent and usually
    skippable.
+10. Grants Help: an org hiring or asking for grant-writing help (full-time,
+   part-time, or contract grant writer / grants manager postings, or an open
+   LinkedIn ask for a grant writer). High intent for Relate Group's fractional
+   grants partnership. See the "Grants Help lane" section for its dedicated
+   messaging and status conventions.
 
 Do NOT treat a generic new board chair as a primary signal unless the new chair
 arrives with a stated turnaround or fundraising mandate. Skip 990 revenue analysis
@@ -310,10 +315,11 @@ Field guide:
 - Signal Type (`color_mm3vbsjy`), one of: "RFP / Seeking Consultant",
   "Open Dev Role / Departure", "Financial Distress", "Capital Campaign",
   "New CEO/ED", "CRM Migration", "Strategic Plan / Merger / Milestone",
-  "New CDO/Dev Lead", "Capacity Grant / Funding Cliff", "Grants Help". If two apply, label the
-  highest-intent one and note the other in Trigger Detail. (Board label note: open
-  job postings have historically been labeled "Dev Job Posting" and public asks
-  "Active Ask (Fractional/Interim)"; reuse existing labels.)
+  "New CDO/Dev Lead", "Capacity Grant / Funding Cliff", "Grants Help". If two
+  apply, label the highest-intent one and note the other in Trigger Detail.
+  (Board label note: open job postings have historically been labeled "Dev Job
+  Posting" and public asks "Active Ask (Fractional/Interim)"; reuse existing
+  labels.)
 - Sector (`dropdown_mm3vj3nx`): a short vertical (Health, Health / Rare Disease,
   Education, Faith-Based / Human Services, Arts & Culture, Human Services, Human
   Services / Food Security, Animal Welfare, Disaster Relief / Human Services,
@@ -327,7 +333,10 @@ Field guide:
   (<date>) passed, archived"). You do the posting review; never write a vague "go
   review the posting." The message content lives in the Outreach Drafts column, so
   keep this field to the action.
-- MB 1st-Degree? (`color_mm3w8mpp`): set "Unknown" on every newly logged lead and leave it. The Michelle Boggs check is DEFERRED to reply time (per Dan, June 6, 2026): running it on every sweep lead slowed runs down for people who may never respond. The acceptance-check skill resolves it to a definite Yes or No when the lead replies, using the Step 5C method. Never leave the column blank.
+- MB 1st-Degree? (`color_mm3w8mpp`): REQUIRED on every item, every run. Set in
+  Step 5C. If the lead has a named person with a verified profile, this MUST be a
+  definite Yes or No (run the check, never punt to Unknown). Use Unknown ONLY for an
+  org-only lead with no named individual to check. Never leave blank.
 
 Fit Priority scoring:
 - High: ANY Tier 1 signal (RFP, Open Dev Role / Departure, Financial Distress),
@@ -346,21 +355,28 @@ in Trigger Detail, score it High.
 
 - New: freshly logged, prep not yet complete.
 - Ready to Send: fully prepped and queued, awaiting Dan's go (see Step 7).
-- Invite Pending: connection request sent, awaiting acceptance. On setting this status (the request has gone out), move the item into the "Outreach Sent (Awaiting)" group (`group_mm3w1p1z`) with move_object.
-- Connected (No Note Yet): invitation accepted, ready for the first message.
-- Followed Up (Awaiting Reply): first message sent. On setting this status, move the item into the "Outreach Sent (Awaiting)" group (`group_mm3w1p1z`) with move_object.
+- Invite Pending: Grants Help lane equivalent of Ready to Send (outreach copy
+  queued in Outreach Drafts, awaiting the send; the lead stays in the Grants Help
+  group until sent).
+- Connection Sent: connection request sent, awaiting acceptance.
+- Invite Sent - No Response: Grants Help lane equivalent of Connection Sent. On
+  send, the lead also moves to the "Outreach Sent (Awaiting)" group
+  (`group_mm3w1p1z`).
+- Connected: invitation accepted, ready for the first message.
+- Followed Up: first message sent.
+- Engaged (Their Court): an outbound EMAIL has been drafted or sent to the lead
+  (the ball is with them). Email-channel leads move to the "Engaged (Their
+  Court)" group (`group_mm42dhz`) with this status as soon as the Spark draft
+  exists.
 - Not Interested: person replied negatively or asked to stop.
 - Not a Fit: Claude or Dan judges the prospect not a match (poor sector, very
   large institution, interim, expired/stale lead).
 - Not Enough Info: no identifiable or verifiable decision-maker to pursue.
-- Do Not Send: Dan knows this org or person personally, or has otherwise flagged the lead as off-limits to automated outreach. NEVER send a connection request, message, or InMail to a Do Not Send lead, never advance it to Ready to Send, and never queue or send a draft for it. Dan handles these himself. Leave the item as is and take no outreach action.
 
 The three closing statuses (Not Interested, Not a Fit, Not Enough Info) trigger a
 Monday automation that moves the item into the Not Pursuing group, so set them
-accurately and promptly. Never move a lead backward (e.g. from Followed Up (Awaiting Reply) back to
-Connected (No Note Yet)).
-
-Later stages are managed by the acceptance-check skill: "Replied (Triage)", "Engaged (Their Court)", "With Emily", "Meeting Set", and "Nurture (Later)". When this sweep logs a SENT lead (Invite Pending, Followed Up (Awaiting Reply), or an InMail send), also stamp Channel (status column color_mm42t2q9, label "Connection Request" or "InMail" per the send method) and Owner (people column multiple_person_mm42a5bj, Dan, person id 66543582), passing createLabelsIfMissing true.
+accurately and promptly. Never move a lead backward (e.g. from Followed Up back to
+Connected).
 
 ### Step 5: Identify and AUTO-VERIFY the contact (do the work yourself)
 
@@ -399,19 +415,31 @@ former colleague, a strong warm-intro angle, so state it plainly. Also note othe
 hooks: notable prior roles, a location match, shared sector, a recent post worth
 referencing. Leave blank if nothing relevant.
 
-#### Step 5C: Michelle Boggs 1st-Degree check (REPLY TIME ONLY; never during the sweep)
+#### Step 5C: Michelle Boggs 1st-Degree check (via Chrome, every lead)
 
-TIMING (per Dan, June 6, 2026): do NOT run this check while sweeping or logging. Every new lead gets MB 1st-Degree (`color_mm3w8mpp`) = "Unknown" and keeps it until the lead REPLIES. When a reply elevates a lead to Replied (Triage), the acceptance-check skill runs this check ONCE and resolves it to a definite Yes or No. The method below is the canonical procedure for that reply-time check; nothing in the sweep should execute it.
+Set MB 1st-Degree (`color_mm3w8mpp`). Whenever the lead has a NAMED person with a
+verified LinkedIn profile (Step 5A), you MUST resolve this to a definite Yes or No.
+"Unknown" is allowed ONLY when the lead is an organization with no named individual
+at all (no person to check). A dropped filter, a private connection list, or a
+3rd-degree profile are NOT reasons to use Unknown: the method below still returns a
+definite answer, so use it.
 
-A Yes means Michelle can make a warm intro.
-
-DO NOT use a keyword search with a connectionOf filter for this. LinkedIn silently DROPS the connectionOf filter whenever a keyword is present, so a People search for "Michelle Boggs" in network=["F"] just returns Michelle every time (she is one of Dan's OWN 1st-degree connections), regardless of the lead. That method produced a long run of FALSE "Yes" results. The "1st" badge on that result is Michelle's degree to DAN, not to the lead, and the mutual-count subtext is Dan and Michelle's mutuals (identical for every lead), so both get misread as proof of a shared connection. Never trust that approach.
-
-CHECK THE CONNECTION DEGREE FIRST, then use the lead's OWN mutual-connections list, with the contact's profile open in Dan's logged-in Chrome:
-0. Read the degree badge next to the lead's name (1st, 2nd, or 3rd). If the lead is 3rd DEGREE to Dan, set "No" immediately and skip the rest of this check: Michelle is one of Dan's 1st-degree connections, so anyone Michelle is connected to would show to Dan as 2nd degree or closer, and a 3rd-degree lead therefore cannot be Michelle's connection. If the lead is 2nd degree (or 1st), an automatic answer is NOT possible and a MANUAL check is required, so continue:
-1. On the lead's profile, look for the mutual-connections facepile under their connection count (the line like "<Name> and N other mutual connections"). If there is NO mutual-connections element at all (common on 2nd and 3rd degree profiles), the lead has zero mutual connections with Dan, so Michelle cannot be one: set "No".
-2. If a mutual-connections element IS present, click it to open LinkedIn's own canned, lead-scoped list (the URL carries origin=MEMBER_PROFILE_CANNED_SEARCH and is already filtered to people connected to BOTH Dan and this lead). Do NOT add a keyword to that list, because adding a keyword re-triggers the same connectionOf-drop bug. Page through the unfiltered list and scan for "Michelle Boggs, MBA, CFRE" (GoFundMe / nonprofit fundraising, the correct Michelle).
-3. Set "Yes" ONLY if Michelle Boggs genuinely appears in that lead-scoped mutual-connections list. Otherwise set "No". A lead with no facepile, or whose mutual list does not contain Michelle, is a definite No.
+A Yes means Michelle can make a warm intro. With the contact's profile open in
+Dan's logged-in Chrome:
+1. Run the shared-connections search built around DAN's network, not the lead's:
+   navigate to a People search with keyword "Michelle Boggs", `network=["F"]`, and
+   `connectionOf=["<the lead's profile URN>"]`. (Get the lead URN from the profile
+   page.) The `network=["F"]` facet is REQUIRED: it constrains results to Dan's own
+   1st-degree connections (the mutual-connections view) and is what makes the
+   filter actually render. Without it LinkedIn silently drops the connectionOf
+   filter and returns unfiltered junk, which is the false-read trap that produced
+   bad "Unknown" results before. Confirm the "1st" facet is active on the results
+   page before trusting them.
+2. Because Michelle is one of Dan's 1st-degree connections, if Michelle is also
+   connected to the lead she WILL appear in this search. So: if "Michelle Boggs"
+   returns as a result, set "Yes"; if the filtered search (1st facet active)
+   returns "No results found", set "No". A clean "No results" with the facet active
+   is a definite No, not an Unknown.
 This is read-only profile review: never send or accept anything here. Call out
 every "Yes" in the summary so Michelle can be looped in.
 
@@ -422,10 +450,15 @@ contacted. If they specify an email or application portal, that is the channel f
 an APPLICATION. But for a business-development pitch to a decision-maker (the usual
 case here), a LinkedIn connection request to the verified ED / CEO / CDO is right
 even when the posting's apply-instructions target job applicants; use judgment.
-Record the concrete next step in Action for Dan. If the channel is email, also
-draft it in Dan's Spark (Spark draft tool, dan@relate.consulting) so it is ready
-to review, and note in Action for Dan that a Spark draft is ready. Never send
-email automatically.
+Dan never applies through portals; when a posting is portal-only, find the
+decision-maker and use LinkedIn or a listed email instead. Record the concrete
+next step in Action for Dan. If the channel is email, draft it in Dan's Spark FROM
+dan@relate.group (the Spark alias of the dan@relate.consulting account; pass
+account "dan@relate.group" to the Spark draft tool) so it is ready to review.
+After drafting an outbound email: move the lead to the "Engaged (Their Court)"
+group (`group_mm42dhz`), set Status "Engaged (Their Court)", and log an item
+update with the Spark draft ID and recipient. The email replaces any pending
+LinkedIn touch for that lead (no double-tap). Never send email automatically.
 
 Skip drafting for Low-fit leads (leave Outreach Drafts blank). For each High or
 Medium lead, write as Dan, like a sharp marketing pro:
@@ -435,9 +468,8 @@ Medium lead, write as Dan, like a sharp marketing pro:
   -> interim and fractional development leadership. New CDO/Dev Lead -> project and
   advisory help (campaign, CRM, dashboards, coaching), not fractional. Capital
   campaign -> feasibility, planning, execution. CRM migration -> development
-  operations and CRM optimization.
-- If the profile shows a shared employer (AHA, ACS, University of Miami), you may
-  warmly reference it ("fellow AHA alum"), only when clearly visible, kept natural.
+  operations and CRM optimization. Grants Help -> a fractional grants partner
+  (see the Grants Help lane section for the locked framework v1 messaging).
 
 A/B TEST (alternate two message variants, 50/50): every draft is one of two
 variants so Relate Group can test which performs better. ASSIGNMENT: before
@@ -446,9 +478,11 @@ that already have a variant, and assign whichever variant has FEWER so far (tie
 goes to A); keep alternating within the run. Then TAG the lead: set
 `color_mm3whszp` to "A (Current)" or "B (Alongside)" (createLabelsIfMissing:true),
 and add the matching "Variant:" line in the Outreach Drafts column (per the format
-in the save step below). BOTH variants must be fully personalized: insert the verified First Name,
-exact title, and org. Never leave a [bracket] in a Ready-to-Send draft. Both are
-em-dash free and say "Relate Group".
+in the save step below). Grants Help leads are EXEMPT from the A/B rotation: they
+always get the framework v1 messaging (Variant line "Grants PT (framework v1)" or
+"Grants FT (framework v1)"). BOTH variants must be fully personalized: insert the
+verified First Name, exact title, and org. Never leave a [bracket] in a
+Ready-to-Send draft. Both are em-dash free and say "Relate Group".
 
 VARIANT A (current, matched to the signal):
 A) CONNECTION REQUEST: about 300 characters max. Reference the trigger, establish
@@ -492,8 +526,6 @@ I'd genuinely enjoy having you in the room.
 Warmly,
 Dan Thorpe
 Co-Founder, Relate Group
-(Email note: dan@relate.group is per Dan's finalized copy; confirm vs.
-dan@relate.consulting and use whichever Dan confirms.)
 
 Save the draft into the OUTREACH DRAFTS column on the item, NOT a Google Doc. (We
 no longer generate Docs; the draft lives on the lead's row.) Set Outreach Drafts
@@ -501,7 +533,7 @@ no longer generate Docs; the draft lives on the lead's row.) Set Outreach Drafts
 
 ```
 === OUTREACH DRAFTS ===
-Variant: <A (Current) | B (Alongside)>
+Variant: <A (Current) | B (Alongside) | Grants PT (framework v1) | Grants FT (framework v1)>
 
 CONNECTION REQUEST (max ~300 chars):
 <the connection note text>
@@ -517,10 +549,11 @@ flows locate the draft by it. Leave the old LinkedIn Draft link column
 ### Step 7: Advance qualifying leads from "New" to "Ready to Send"
 
 After a lead is fully logged and prepped, do not leave it at "New". Take every
-remaining prep action and advance it to Status "Ready to Send", so Dan only has to
-review and give the word. NOTHING is sent here: "Ready to Send" means "fully
-prepped, awaiting Dan's go." Dan reviews and gives the final word before any
-connection request goes out (sends happen through Chrome with him present).
+remaining prep action and advance it to Status "Ready to Send" (or "Invite
+Pending" for Grants Help lane leads), so Dan only has to review and give the
+word. NOTHING is sent here: these statuses mean "fully prepped, awaiting Dan's
+go." Dan reviews and gives the final word before any connection request goes out
+(sends happen through Chrome with him present).
 
 A lead QUALIFIES for Ready to Send only when ALL are true:
 - Fit Priority is High or Medium (Low never advances; it has no draft).
@@ -540,49 +573,81 @@ Never move a lead backward.
 
 Concise summary (no em-dashes): leads added, breakdown by signal type and tier,
 High-priority and stacked-signal leads by name, drafts created, profiles verified,
-any shared-employer (AHA / ACS / University of Miami) angles, any reply-time MB 1st-Degree
-"Yes" so Michelle can be looped in (the check no longer runs during the sweep), leads sifted out for passed deadlines, and any
+any shared-employer (AHA / ACS / University of Miami) angles, every MB 1st-Degree
+"Yes" so Michelle can be looped in, leads sifted out for passed deadlines, and any
 set to Not a Fit or Not Enough Info. State which leads advanced to "Ready to Send"
 and which are still "New" and why. Report the A/B split this run (how many got
 Variant A vs Variant B) and the running board-wide A/B totals. Remind Dan nothing
 was sent: Ready to Send leads are queued and awaiting his final word.
 
-## SEND comments: process Dan's outbound queue on every sweep
+## Grants Help lane (grant-writer hiring signals; conventions locked June 2026)
 
-Every sweep run also processes Dan's SEND: queue, the same mechanism defined in the relate-linkedin-acceptance-check skill. A comment Dan posts on a lead item that STARTS with "SEND:" (case insensitive) is his pre-approved, pre-written outbound LinkedIn message for that lead, and it is the ONLY exception to the never-send rule. Collect SEND: comments from EVERY item in EVERY group on the board, no group excluded (use the board-level updates feed via all_monday_api, or get_updates per item; this includes Pipeline / Drafting, Outreach Sent (Awaiting), Replied (Dan to Triage), Engaged (Their Court), With Emily, Nurture / Later, and Not Pursuing) that do not yet have a later "SENT via LinkedIn" confirmation comment on the same item, and deliver each one VERBATIM: strip only the marker, never edit or add anything, never send to anyone but that lead, never send the same comment twice. Use the lead's existing thread (regular LinkedIn DM for a 1st degree connection, or the existing Sales Navigator thread for an InMail lead) and verify the recipient's name in the compose header before sending. After it sends, post a confirmation update "SENT via LinkedIn on <date and time>:" followed by the full message text, set Status "Engaged (Their Court)", and move the item to group group_mm42dhz. If it cannot be delivered (not connected, no open thread, or the recipient cannot be verified), send nothing, post a comment explaining why, and notify Dan (user id 66543582). Comments without the SEND: marker are never sendable; they are pipeline notes, including this automation's own logs, which post from the same Monday account as Dan.
+"Grants Help" is its own Signal Type label and board group (`group_mm43afrq`),
+covering orgs hiring or asking for grant-writing help: full-time, part-time, or
+contract grant writer / grants manager postings, and open LinkedIn asks. The
+pitch is a fractional grants partner from Relate Group instead of a solo hire,
+as a bridge while they hire or as ongoing capacity. These conventions apply on
+top of the normal pipeline:
 
-## Add-on sweep: Grants Help (grant writer demand)
+- MESSAGING IS FRAMEWORK V1, not the A/B rotation. Variant line: "Grants PT
+  (framework v1)" for part-time/contract postings, "Grants FT (framework v1)"
+  for full-time roles.
+- VOICE: Dan as President of Relate Group, leading the Grants practice, after
+  20+ years in nonprofit development leadership including CDO and national
+  fundraising executive roles. Before his late-June 2026 start, phrase it "I've
+  accepted the President role ... starting later this month"; after he starts,
+  use present tense. Sign "Warmly, Dan Thorpe" with the President title.
+- FIRST-MESSAGE SPINE, in order: (1) thanks plus quick context; (2) "Honestly, I
+  saw [the posting] and didn't want to wait" plus one lead-specific hook, then
+  "a lot of leaders we work with began with that exact posting and landed
+  somewhere better: a fractional grants partner instead of a solo hire," with
+  the budget and turnover-risk point (FT roles: "often for less than the loaded
+  cost of one salary"); (3) the two differentiators: a proprietary process for
+  screening and evaluating grant opportunities (every hour goes into funders
+  you can actually win, not long-shot applications), and a seamless working
+  model (we carry the research, writing, and submissions from materials you
+  already have, so it never becomes a second job for staff); (4) a 20-minute
+  call offer mapped to their pipeline, closing "congrats on investing in
+  grants, for a lean team it's usually the highest-leverage move there is."
+- ADAPTATIONS: contract postings get contract framing (buy the outcome, not the
+  headcount; no single point of failure mid-grant). Early-stage orgs get
+  scale-as-you-grow framing plus a verify-budget caution in Action for Dan.
+  Referral-gateway posts address the connector and offer a rundown before the
+  intro. Team-member contacts who are not the decision-maker get peer-level
+  bridge-capacity framing that invites routing to the right person.
+- CONNECTION NOTES hard cap at 300 characters (count before saving).
+- EMAIL VARIANT (when the posting lists an email address): subject "Before you
+  fill the [Role Title] seat", a "this isn't an application" opener, the
+  framework v1 spine, reply CTA to dan@relate.group. Master template: Relate
+  Marketing/Grants Email Outreach - FT Leads.md. Draft in Spark from
+  dan@relate.group per Step 6, then the Engaged (Their Court) flow applies.
+- STATUS FLOW: drafted -> "Invite Pending" (stays in the Grants Help group).
+  Invite actually sent -> move to "Outreach Sent (Awaiting)" (`group_mm3w1p1z`)
+  with Status "Invite Sent - No Response". Email drafted -> "Engaged (Their
+  Court)" group and status.
 
-Run this with every sweep. It hunts for nonprofit leaders of ANY title (ED / CEO, CDO, development or program staff, operations, board members) signaling they need help with GRANTS. This maps directly to Relate Group's grant strategy and grant writing bench, so treat it as Tier 1 intent. Signal Type label: "Grants Help" (already on the Signal Type column; pass createLabelsIfMissing true anyway).
-
-WHAT QUALIFIES (any one of these):
-- Hiring a PART-TIME, contract, or fractional grant writer.
-- Filling a FULL-TIME grant writer / grants manager position.
-- Openly asking for suggestions or recommendations for companies, firms, consultants, freelancers, or side hustlers who can help with grants ("anyone know a good grant writer?").
-
-AUTOMATIC EXCLUSIONS (never log):
-- Anyone seeking VOLUNTEER or pro bono grant help (volunteer grant writer posts, Catchafire / Taproot style asks). No budget means no lead.
-- Consultants and competitors: anyone advertising their own grant services, grant writers seeking work for themselves, trainers and webinar sellers, and lead-generation content.
-- All standing exclusions still apply: US nonprofits only, national federated charities and their chapters, chambers and trade or membership associations, Pride/LGBTQ orgs, and stale postings per the Step 2 deadline check.
-
-WHERE TO LOOK (vary queries each run):
-1. LinkedIn CONTENT search (linkedin.com/search/results/content/, logged in, sort Latest): "part time grant writer" is the GOLD query (most genuine recent asks in testing); also "looking for a grant writer"; "grant writer recommendations"; "anyone recommend" grant writer; "fractional grant writer"; hashtags #grantwriting #grantwriter #nonprofitfunding. Never use "need help with grants"; it returns pure seller noise. READ each post and classify the poster before logging; the feed is dominated by sellers, and careful classification is the whole game.
-2. LinkedIn JOBS: "grant writer" with the part-time AND contract job-type filters (f_JT=P,C) plus the past-month date filter; full-time postings also count (see scoring).
-3. LinkedIn GROUPS Dan belongs to (nonprofit leadership and grant-professional groups): scan recent posts for genuine asks.
-4. NON-LinkedIn channels: Idealist.org (best volume and visible publish dates; on REPOSTED listings the deadline field goes stale, so trust the publish date and listing body over the deadline field), Chronicle of Philanthropy jobs (clean posted and expiry dates), Spark the Fire job board (sparkthefiregrantwriting.com/jobboard, a curated grant-jobs aggregator), Work for Good (pages are JS-rendered and return empty to plain web fetch; open it in Chrome to read dates), Foundation List, Indeed ("part time grant writer" nonprofit), state nonprofit association job and RFP boards, and Reddit via Chrome (r/nonprofit and r/grantwriting recommendation threads; the JSON API is blocked, and log only if the org is identifiable). Philanthropy News Digest's job board was decommissioned in February 2026 and redirects to Idealist; skip it.
-
-SCORING: an open ask for recommendations or a part-time / contract posting is Fit Priority High (the org is shopping for exactly what Relate Group sells, right now). A full-time grant writer posting is Medium (pitch interim or contract grant support while they hire, then grant strategy); raise it to High if the org is Florida / Southeast or matches the sector bench.
-
-PIPELINE: log each qualifying lead to the "Grants Help" group (group_mm43afrq), NOT Pipeline / Drafting, with the full completeness gate (Signal Type "Grants Help", Source, Date Detected, Location, Sector, Fit Priority, verified decision-maker in LinkedIn Profile, MB 1st-Degree "Unknown" (check deferred to reply time per Step 5C), LinkedIn Insights, Next Step naming the exact ask and channel). GRANTS MESSAGING (locked June 7, 2026; applies to PART-TIME grants leads only for now): personalize the two templates below with the lead's first name and org. FUTURE-FOCUSED FRAMING IS REQUIRED until Dan starts: he has ACCEPTED the President role at Relate Group and starts later in June 2026, so write "I've accepted the President role" and "later this month I step in", never "I am President", and sign the first message "Incoming President, Relate Group". Write both into Outreach Drafts with header line "Variant: Grants PT (framework v1)" and advance the lead to "Ready to Send" (it stays in the Grants Help group until the send).
-CONNECTION REQUEST template (HARD CAP 300 characters; LinkedIn disables Send above 300, so count every personalized note and trim words before sending): Hi [First], saw [Org] is looking for a part-time grant writer. After 20+ years leading nonprofit fundraising, I've accepted the President role at Relate Group, where I'll be leading our Grants work starting later this month. Your search caught my eye and I'd love to connect. - Dan (if the lead personally POSTED the ask, open with "saw your post about a part-time grant writer for [Org]").
-FIRST MESSAGE template (after they accept; the / marks paragraph breaks, type real line breaks when drafting): Thanks for connecting, [First]. Quick context on me: later this month I step in as President of Relate Group, where I'll be leading our Grants practice. It follows 20+ years in nonprofit development leadership, including time as a CDO and national fundraising executive, so I've sat in the seat you're hiring for. / Honestly, I saw [Org]'s search for a part-time grant writer and didn't want to wait for my start date to reach out. A lot of leaders we work with began with that exact posting and landed somewhere better: a fractional grants partner instead of a solo hire. You get a senior team for a similar budget, with no recruiting, onboarding, or turnover risk. / Two things will make our approach different. First, Relate Group has developed a proprietary process for screening and evaluating grant opportunities, so every hour goes into funders you can actually win instead of long-shot applications. Second, the way we draft and work with clients is built to be seamless: we carry the research, writing, and submissions, working from materials you already have, so it never becomes a second job for your staff. / If it's useful, I'd be glad to walk you through how that would map to [Org]'s pipeline in a 20-minute call. Either way, congrats on investing in grants. For a lean team it's usually the highest-leverage move there is. / Warmly, Dan Thorpe, Incoming President, Relate Group.
-NON-PART-TIME Grants Help leads (full-time postings, contract-only or open asks that do not say part time): keep Outreach Drafts at "(Grants outreach copy pending Dan's messaging direction)" and Status "To Research" until Dan extends the framework. The "Grants Help" group is a holding pen ONLY until first engagement: the moment a connection request or InMail goes out to the lead, or the lead replies, the lead leaves this group and follows the exact same flow as every other signal type (awaiting groups, Replied (Dan to Triage), Engaged (Their Court)).
+SEND MECHANICS (any send run, only on Dan's explicit instruction): when Dan
+explicitly says to send, sends go out through Claude in Chrome on his logged-in
+LinkedIn. Use the FULL PROFILE PAGE only: the top-card Connect button, or the
+More menu then Connect. NEVER click sidebar "More profiles for you" Connect
+buttons, and do not trust dropdown Connects blindly: some send instantly WITHOUT
+the note. Before sending, open the More menu and check for "Pending" (an invite
+already out) and check the message thread for prior touches (no double-tap). The
+add-a-note dialog's textarea is inside shadow DOM: fill it via JavaScript (set
+the value with the native setter, dispatch an input event) and verify the
+character counter moved before clicking Send; notes cap at 300 characters.
+Email-gated profiles (LinkedIn demands the person's email to connect) are
+unreachable by invite: use the lead's named backup contact, or InMail per the
+NFP campaign rules. 1st-degree connections get the FIRST MESSAGE via the Message
+button instead of an invite (drop the "thanks for connecting" opener). Pace
+sends, stop immediately on any LinkedIn limit warning, and log every send on the
+board (group move, status, and a note for any send that went without its note).
 
 ## Add-on sweep: Active Asks (public LinkedIn posts and demand signals)
 
 Optional sweep for nonprofit leaders publicly ASKING for fractional, interim, or
 development help, the warmest signal of all. Results go into the "Active Asks"
-group (`group_mm42t1gk`), not the main group.
+group (`group_mm3wstq7`), not the main group.
 
 Honest constraint: LinkedIn content search is noisy (dominated by consultants
 advertising their own services). Quality over quantity; careful classification is
@@ -593,7 +658,9 @@ the whole game. Logged-in browser required.
    possible. Query ideas (vary): "anyone recommend" interim development; "we are
    between development directors"; "seeking recommendations" fundraising; "our
    development director is leaving"; "looking to bring on" fractional; hashtags
-   #fractionalleadership, #interimleadership, #nonprofitfundraising.
+   #fractionalleadership, #interimleadership, #nonprofitfundraising. Also
+   grants-help asks: "looking for a grant writer", "part time grant writer",
+   "contract grant writer" (these go to the Grants Help lane, not Active Asks).
 2. For EACH candidate, READ and CLASSIFY the poster. LOG only if the poster is a
    nonprofit ED, CEO, CDO, VP of Development, or board member genuinely asking for
    help (or saying their org needs it). SKIP consultants advertising services,
@@ -605,10 +672,11 @@ the whole game. Logged-in browser required.
    pulled postings are not pursued: mark Not a Fit, note why in Action for Dan, and
    they move to the Not Pursuing group.
 
-For each genuine ask, create_item in the Pipeline / Drafting group with: name; Trigger
+For each genuine ask, create_item in the Active Asks group with: name; Trigger
 Detail (one line plus a short quote of the ask); Source; Signal Type "Active Ask
 (Fractional/Interim)"; Location; Fit Priority usually High; Status New; verified
-LinkedIn Profile; Insights (role, org, why it is warm); MB 1st-Degree stays "Unknown" (reply-time check); Action for Dan; then write a warm reply referencing their exact ask
+LinkedIn Profile; Insights (role, org, why it is warm, plus the MB 1st-degree
+check); Action for Dan; then write a warm reply referencing their exact ask
 (not a generic pitch) into the Outreach Drafts column. Never comment or message automatically; draft
 only, then advance to Ready to Send per Step 7.
 
@@ -642,12 +710,14 @@ MESSAGING RULES (locked):
 SEND METHOD BY DEGREE (try everyone, do not assume):
 - ALREADY CONNECTED (1st degree): you cannot send a connection request, so send the
   invite as a DIRECT MESSAGE (the "first message" copy below). Log Status
-  "Followed Up (Awaiting Reply)".
+  "Followed Up".
 - NOT CONNECTED (2nd / 3rd degree): send a CONNECTION REQUEST with the note below.
-  Log Status "Invite Pending". The first message is held in Outreach Drafts for
+  Log Status "Connection Sent". The first message is held in Outreach Drafts for
   when they accept.
 - EMAIL-GATED (LinkedIn demands the person's email to connect): do not enter an
-  email you do not have. Try a Sales Navigator InMail instead (Message on the Sales Nav lead opens an InMail; uses 1 credit; needs a subject). CONTENT RULE for EVERY email-gated InMail, campaign or signal sweep: the InMail carries ONLY the short congratulations / connection-style message (the same copy drafted as the CONNECTION REQUEST note). Never send the full first message by InMail; the longer follow-up in the series goes out ONLY after they connect with Dan. If InMail is not available either, EXCLUDE the lead (do not log it) and move on.
+  email you do not have. Try a Sales Navigator InMail instead (Message on the
+  Sales Nav lead opens an InMail; uses 1 credit; needs a subject). If InMail is not
+  available either, EXCLUDE the lead (do not log it) and move on.
 - Verify each person on LinkedIn (right name, org, current CEO/ED role) before
   sending. SKIP the Michelle Boggs check on this rapid campaign (set MB 1st-Degree
   "Unknown" with a note "not run during rapid send push") to keep volume up.
@@ -658,7 +728,7 @@ Source = the NFP CEOs list URL, Date Detected = today, Location, Sector, Fit
 Priority (Medium default, High for Florida or strong-fit), Status per the method
 above, MB "Unknown", LinkedIn Profile, a short Insights line, an Action for Dan,
 and the Outreach Drafts column holding the exact message(s) sent. Only log leads
-that actually sent; excluded/unreachable leads are not logged. After the item is created and its Status set (Invite Pending for 2nd/3rd degree, Followed Up (Awaiting Reply) for 1st degree), MOVE it into the "Alongside Campaign (Awaiting)" group (`group_mm422a7v`) with move_object so every sent Alongside campaign lead lands there instead of New Leads.
+that actually sent; excluded/unreachable leads are not logged.
 
 VARIANT B TEMPLATES (personalize [First], keep "Alongside" quoted, no em-dash):
 
@@ -697,7 +767,8 @@ Direct message (1st degree, one combined message; no "thanks for connecting"):
 > next date.
 
 InMail (email-gated fallback). Subject: "A free peer room for nonprofit CEOs".
-Body: ONLY the short connection-request note above (the congratulations-style message), ending "If you're open to it, just reply and I'll share the next date." Do NOT use the full first message as the InMail body; the full message is held and sent only after the person connects.
+Body: same as the 1st-degree direct message above, ending "...just reply and I'll
+share the next date." (InMail has no "reply here" thread, so drop "here").
 
 NOTHING auto-replies: if any of these people write back, route them to the Replied
 lane for Dan to answer personally (same rule as the acceptance-check skill).
