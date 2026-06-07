@@ -3,9 +3,9 @@ name: relate-nonprofit-leads
 description: >-
   Find, score, and log nonprofit fundraising prospecting leads for Relate Group,
   then draft a personalized LinkedIn outreach message for each into the lead's
-  Outreach Drafts column on the board, verify the contact, set the Michelle
-  1st-degree warm-intro flag, and advance
-  fully prepped leads to "Ready to Send" for Dan's approval. Use whenever Dan
+  Outreach Drafts column on the board, verify the contact, and advance
+  fully prepped leads to "Ready to Send" for Dan's approval (the Michelle Boggs
+  1st-degree check runs at reply time only, never during the sweep). Use whenever Dan
   wants to run the lead sweep, find new nonprofit prospects, add leads to the
   signal board, or generate outreach drafts ("run the sweep," "find leads," "add
   more leads," "any new prospects"), or as the scheduled daily run. ALSO covers the
@@ -26,7 +26,7 @@ description: >-
 
 This is the single source of truth for the Relate Group lead sweep. It runs both
 on demand ("run the sweep") and as the scheduled daily task. Both entry points
-share this workflow, the same Monday board, and the same Drive folder; dedupe
+share this workflow and the same Monday board (no Drive folder; drafts live on the board); dedupe
 protects against overlap. Do not keep a second, separate sweep skill: this file
 supersedes the older "relate-nonprofit-signal-leads" and "relate-nonprofit-leads"
 versions.
