@@ -9,16 +9,18 @@ description: >-
   check," "did anyone accept," "check LinkedIn accepts," "any connection
   accepts," "who connected back," "check for replies on my LinkedIn outreach,"
   or when reconciling the "Invite Pending" leads on the signal board against new
-  LinkedIn notification emails. Detection and prep only: it NEVER sends a
-  LinkedIn message. Dan approves and sends every message himself.
+  LinkedIn notification emails. Detection and prep only, with ONE
+  exception: it delivers Dan's own pre-approved SEND: comments (his outbound
+  queue). Otherwise it never sends; Dan approves every message himself.
 ---
 
 # Relate Group LinkedIn Acceptance Check
 
 Detect which pending LinkedIn connection requests have been accepted or replied
 to, update the Monday board, and have the next message ready for Dan to approve.
-This is detection and prep only. Never send a LinkedIn message. Dan approves
-every send himself, and sends go out through Chrome with him present.
+This is detection and prep only, with ONE exception: Dan's own SEND: comments
+are his pre-approved outbound queue and are delivered per the SEND section. Dan
+approves every other send himself, and sends go out through Chrome.
 
 ## Hard rules
 
