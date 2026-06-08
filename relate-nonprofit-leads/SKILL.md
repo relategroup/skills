@@ -84,6 +84,11 @@ to re-map).
 - Outreach email sender: dan@relate.group, a Spark alias of the
   dan@relate.consulting account (pass account "dan@relate.group" to the Spark
   draft tool). Dan never applies through portals.
+- NO SIGNATURE BLOCKS IN EMAILS: never end a drafted email with a sign-off
+  block ("Warmly, Dan Thorpe / title / email | phone"). Dan's Spark account
+  appends his real signature (logo, name, title, contact info) automatically.
+  End with the closing sentence, optionally just "Warmly,". LinkedIn messages
+  DO keep the name sign-off, since LinkedIn has no auto-signature.
 - Column IDs:
   - Trigger Detail (long_text): `long_text_mm3v43dc`
   - Source (link): `link_mm3vj8yb`
@@ -302,7 +307,8 @@ Drafts, LinkedIn Insights, and Action for Dan. Do not leave any of them blank.
 NEVER TOUCH THE PEOPLE COLUMN (`multiple_person_mm3wr7h`). Do not add, set, or
 change it on any lead, ever. Dan owns and uses that column himself after
 screening; leave whatever is there exactly as you found it. It is not part of the
-completeness gate.
+completeness gate. ONE standing exception, per Dan: the "With Emily" handoff
+(see the Engaged unstick section) assigns Emily in this column.
 
 Field guide:
 
@@ -642,6 +648,44 @@ NFP campaign rules. 1st-degree connections get the FIRST MESSAGE via the Message
 button instead of an invite (drop the "thanks for connecting" opener). Pace
 sends, stop immediately on any LinkedIn limit warning, and log every send on the
 board (group move, status, and a note for any send that went without its note).
+
+## Engaged (Their Court) review: unstick, find emails, hand off to Emily
+
+When Dan asks to review Engaged (Their Court) leads (or on a periodic pass),
+work each lead by its stuck state:
+
+- ASKED-FOR-EMAIL LEADS (Dan asked the person for an email address and is
+  waiting): do not keep waiting. Open the person's LinkedIn profile Contact
+  info (or their Sales Navigator lead page) and look for a published email;
+  1st-degree connections frequently expose one. A reliable extraction is a
+  page-text email regex after the page loads. If found, draft a Spark email
+  from dan@relate.group that continues the conversation directly (and bypasses
+  the LinkedIn loop), note "EMAIL FOUND" plus the address and draft ID in
+  Action for Dan, and never invent session dates or details in the email.
+- ALONGSIDE HANDOFF TO EMILY (after Dan sends the email to a confirmed
+  Alongside joiner): move the lead to the "With Emily" group (group id
+  `topics`), set Status "With Emily", assign Emily (Monday user `101710184`,
+  Donor Outreach) in the People column (the standing exception to the
+  never-touch rule), and add a comment that tags Emily: she was copied on the
+  email; please follow up directly to get the person the next "Alongside"
+  calendar invite and to schedule her quick "what to expect" phone or Zoom
+  conversation beforehand; and please return to this board and comment when
+  she has reached out, connected, and held the meeting. Dan keeps
+  relationship-priority leads (for example local Florida CEOs) himself in the
+  Engaged group.
+- PENDING INVITES (connection request not accepted after ~3 or more days):
+  recommend a Sales Navigator InMail fallback (check remaining credits; an
+  InMail needs a subject line) and draft the copy into Action for Dan or
+  Outreach Drafts.
+- ENGAGED BUT QUIET (they replied once, Dan answered, then silence): draft a
+  short, personal, no-pitch nudge for Dan to send himself. Never auto-send.
+
+SENT-TOUCH NOTES ARE COMMENTS (board-wide rule, per Dan): every outbound touch
+that actually happened (email sent, invite sent, message sent) is logged as a
+COMMENT (Monday update via create_update) on the lead, with the date, sender
+address, recipient address, and a one-line content summary. The Action for Dan
+column holds only the NEXT action; it is not the record of what was sent.
+Comments are the audit trail Dan reads.
 
 ## Add-on sweep: Active Asks (public LinkedIn posts and demand signals)
 
