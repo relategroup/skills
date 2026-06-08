@@ -2,8 +2,8 @@
 name: relate-linkedin-acceptance-check
 description: >-
   Run Dan Thorpe's LinkedIn acceptance check for the Relate Group prospecting
-  pipeline. Detect, from Dan's Spark email AND from his LinkedIn inbox (read live
-  via Chrome), which pending LinkedIn connection requests have been accepted or
+  pipeline. Detect, from Dan's Spark email AND from his LinkedIn and Sales
+  Navigator inboxes (read live via Chrome), which pending LinkedIn connection requests have been accepted or
   have replied, update the Relate Group Monday board, and queue the next message
   for Dan to approve. Use whenever Dan says "run the acceptance
   check," "did anyone accept," "check LinkedIn accepts," "any connection
@@ -39,12 +39,14 @@ These rules matter on every run, so apply them to anything you read or write:
   himself (see Step 3, "MESSAGED").
 - EVIDENCE-BOUND ONLY. Every acceptance or reply you log, and every status change
   you make, MUST map to a specific, real piece of evidence you actually located in
-  one of the two sources of truth: (1) a Spark email in the danjthorpe@gmail.com
+  one of three sources of truth: (1) a Spark email in the danjthorpe@gmail.com
   mailbox, identified by sender, subject, date, and folder (Inbox / Archive /
-  Spam); or (2) a specific message in Dan's LinkedIn inbox, viewed live via Chrome
-  (Step 2B), identified by the sender's name and the message text and time.
+  Spam); (2) a specific message in Dan's LinkedIn or Sales Navigator inbox, viewed
+  live via Chrome (Steps 2B/2C), identified by the sender's name and the message
+  text and time; or (3) the live thread view itself, for example a "1st degree"
+  badge proving an acceptance, identified by date and what was on screen.
   Record that pointer with the change (in the item update / LinkedIn Insights). If
-  you cannot point to a specific email or a specific LinkedIn message, you may NOT
+  you cannot point to a specific email, message, or live view, you may NOT
   change the lead's status and you may NOT surface a reply for it: leave it pending
   and move on. Never infer, assume, guess, or fabricate an acceptance or a reply,
   and never write or quote reply text that is not taken verbatim from a specific
@@ -167,9 +169,35 @@ Chrome every run. This is the most reliable source for replies.
    from a lead at ANY active stage (Connection Sent, Invite Sent - No Response,
    Connected, or Followed Up): all of them are valid to elevate to Replied,
    because elevating to the Replied lane is a forward move, not a regression.
+   EXCEPTION: a lead at a CLOSED status (Not Interested, Not a Fit, Not Enough
+   Info, or anything in the Not Pursuing group) is NEVER reopened or
+   re-surfaced by this skill, even if they replied, and especially if its
+   Action for Dan carries a "DO NOT SURFACE" note. Dan closed it on purpose;
+   only Dan reopens it.
+
+ACCEPTANCE EVIDENCE FROM THE LIVE THREAD: LinkedIn's acceptance email can lag
+by hours. If the messaging thread itself shows the person at "1st" degree next
+to their name with Dan's connection note delivered, that live view IS valid
+acceptance evidence: record the pointer as "live thread view <date>, shows 1st
+degree, note delivered <time>" and note that the email had not yet arrived.
 
 Treat a LinkedIn-inbox reply exactly like a "MESSAGED" reply in Step 3: never queue
 or surface a templated message on top of it, elevate it to Dan.
+
+## Step 2C: Check the Sales Navigator inbox via Chrome (required)
+
+Sales Navigator messages live in a SEPARATE inbox at
+`https://www.linkedin.com/sales/inbox/`. Replies to Sales Nav DMs and InMails
+(the NFP CEOs "Alongside" campaign sends through Sales Nav) do NOT appear in
+regular LinkedIn messaging, and their email notifications are unreliable, so
+skipping this inbox silently drops real replies. Every run: open the Sales Nav
+inbox, scan the thread list for conversations where the LEAD's text is the
+last line (they replied last), open those threads for the verbatim quote and
+time, and process them exactly like Step 2B replies. Leads already in the
+"With Emily" group are Emily's to work; do not process their threads beyond
+noting them. The thread list preview also exposes unanswered questions (a
+lead's question with no reply from Dan); surface those in the report even when
+the lead's status already moved.
 
 ## Step 3: Match and update the board
 
@@ -267,7 +295,10 @@ buttons (they send without the note); the add-a-note textarea is in shadow DOM,
 so fill it via JavaScript with an input event (300-character cap) and verify the
 counter moved before clicking Send. Check the More menu for "Pending" and the
 message thread for prior touches before any send to avoid double-tapping a lead.
-After a send, update the board: a first message sent sets Status "Followed Up".
+After a send, update the board: a first message sent sets Status "Followed Up",
+and ALWAYS log the send as a COMMENT on the lead (create_update) with date,
+channel, recipient, and a one-line content summary. Comments are Dan's audit
+trail; column text is not.
 
 ## Running on a schedule
 
